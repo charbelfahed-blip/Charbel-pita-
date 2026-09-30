@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Charbel’s Pita Recipe</title>
+<style>
+:root{color-scheme:light dark;--bg:#faf8f3;--fg:#28251e;--panel:#fff;--line:#d7d1c5;--accent:#46634a}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 system-ui,-apple-system,sans-serif;padding:22px 18px 60px}main{max-width:800px;margin:auto}h1{font-size:1.8rem;line-height:1.2}h2{font-size:1.4rem;margin-top:28px}h3{font-size:1.1rem;margin-top:28px}p{margin:12px 0}.viz-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;margin:22px 0}.form-label{display:block;font-weight:600}select{display:block;width:100%;font:inherit;padding:10px;margin-top:8px;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:8px}input[type=range]{display:block;width:100%;min-height:44px;accent-color:var(--accent)}table{border-collapse:collapse;width:100%;margin:24px 0}th,td{padding:10px 6px;border-bottom:1px solid var(--line);text-align:left}.text-end{text-align:right;font-variant-numeric:tabular-nums}.text-small{font-size:.9rem}#pita-summary{font-weight:600}a{color:var(--accent)}details{border-top:1px solid var(--line);padding:16px 0}summary{cursor:pointer;font-weight:600}button{font:inherit;padding:10px 16px;color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:8px}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}@media(prefers-color-scheme:dark){:root{--bg:#20231f;--fg:#f4f1e9;--panel:#2c302b;--line:#52594e;--accent:#b1cfac}}@media print{body{background:white;color:black}.viz-controls,button{display:none}details{display:block}a{color:inherit}}
+</style></head><body><main><h1>Cold-fermented pita</h1><p>KitchenAid 6 qt · Breville or gas pizza oven</p><noscript>Interactive quantities require JavaScript. Open this page in a web browser. Default ingredients for 24 × 45 g pitas: 446 g all-purpose flour, 191 g whole wheat, 414 g water (start with 398 g), 12.7 g salt, 12.7 g olive oil and 3.2 g instant yeast. Cold ferment 12 hours.</noscript>
+<div id="pita-batch">
+  <h2>Your pita batch</h2>
+  <div class="viz-controls">
+    <label class="form-label">Pitas <span id="pita-count" class="tabular-nums">24</span><input class="form-range" id="pita-n" type="range" min="12" max="48" step="6" value="24"></label>
+    <label class="form-label">Dough-ball weight <span id="pita-weight-label" class="tabular-nums">45 g</span><input class="form-range" id="pita-weight" type="range" min="30" max="120" step="5" value="45"></label>
+    <label class="form-label">Whole wheat <span id="pita-percent" class="tabular-nums">30%</span><input class="form-range" id="pita-w" type="range" min="20" max="50" step="5" value="30"></label>
+    <label class="form-label">Cold fermentation<select class="form-select" id="pita-time"><option value="12">12 hours · dough balls</option><option value="24">24 hours</option><option value="48">48 hours</option></select></label>
+    <label class="form-label">Yeast type<select class="form-select" id="pita-yeast"><option value="1">Instant dry</option><option value="1.25">Active dry</option><option value="3">Fresh compressed</option></select></label>
+  </div>
+  <div aria-live="polite">
+    <table class="table table-sm"><thead><tr><th>Ingredient</th><th class="text-end">Weight</th></tr></thead><tbody id="pita-ingredients"></tbody></table>
+    <div id="pita-summary" class="tabular-nums"></div>
+    <div id="pita-water" class="text-small"></div>
+    <p id="pita-mixer"></p>
+  </div>
+  <h2>KitchenAid → cold ferment → bake</h2>
+  <p>A practical starting formula, not a kitchen-tested guarantee. Yeast amounts assume a 3–4°C fridge. Follow the dough’s expansion as well as the clock. Ball weights are before baking; unused reserved water slightly reduces yield.</p>
+  <h3>1. Mix with your KitchenAid</h3>
+  <p>For each mixer batch, combine both flours and the starting water by hand in the bowl. Cover and rest 25 minutes. Add yeast, salt and olive oil. If using active dry yeast, follow the packet’s rehydration directions using water from the recipe allowance.</p>
+  <p>Fit the dough hook. Knead on <strong>speed 2</strong>, checking after 2 minutes; about 4–6 minutes total may be enough. Stop when smooth, elastic and slightly tacky. Add reserved water gradually only if needed. Rest the dough 10 minutes if tight rather than forcing a long mix. Follow your model’s capacity and operating limits; stop if the mixer strains or gets unusually hot.</p>
+  <h3>2. Refrigerate</h3>
+  <p id="pita-ferment"></p>
+  <p>Leave room for expansion. The dough should become aerated and puffy while remaining elastic. If nearly doubled early, bake sooner; if still dense after chilling, allow extra room-temperature time. Do not wait for it to collapse.</p>
+  <h3>3. Relax and roll</h3>
+  <p id="pita-shape"></p>
+  <p>Roll evenly to about 3 mm thick. A 45 g ball makes roughly a 14–15 cm pita; larger balls make wider rounds. If the dough springs back, cover and wait 10 minutes. Rest rolled discs covered for 10–15 minutes. Roll only a few ahead to prevent dry skins.</p>
+  <h3>4. Choose your oven</h3>
+  <label class="form-label">Baking equipment<select class="form-select" id="pita-oven"><option value="breville">Breville Smart Oven Air Fryer</option><option value="gas">Small gas pizza oven · outdoors</option></select></label>
+  <div id="pita-baking" aria-live="polite"></div>
+  <h3>5. Keep soft and store</h3>
+  <p>Move each baked pita under a clean towel immediately. Cool completely before sealing in bags. Freeze the surplus the same day in family-sized portions. Reheat briefly until flexible.</p>
+  <details><summary>If a pita does not puff</summary><p>Bake one test pita first. Check for an underheated baking surface, uneven rolling, tears or a dried surface. Pale and flat: allow more preheating. Burnt before puffing: reduce heat or move farther from the flame. Stiff after baking: shorten the bake and cover promptly. A flat pita still works as a wrap.</p></details>
+  <details><summary>Equipment notes and sources</summary><p>KitchenAid bowl size: 6 qt. Exact mixer series and Breville model numbers are not confirmed. A maximum of 750 g flour per mixer batch is a conservative planning choice, not a manufacturer capacity rating. Gas-oven settings are adapted starting points for your small oven.</p><ul><li><a href="https://www.kitchenaid.com/countertop-appliances/pinch-of-help/how-to-use-a-dough-hook" target="_blank" rel="noopener">KitchenAid: dough hook and speed 2</a></li><li><a href="https://ca.ooni.com/blogs/recipes/ooni-pita" target="_blank" rel="noopener">Ooni: pita and stone temperatures</a></li><li><a href="https://www.breville.com/en-ca/product/bov900" target="_blank" rel="noopener">Breville Air Fryer Pro: model-specific temperature range</a></li><li><a href="https://www.kingarthurbaking.com/recipes/whole-wheat-pita-with-middle-eastern-salad-recipe" target="_blank" rel="noopener">King Arthur: whole-wheat pita techniques</a></li></ul></details>
+</div>
+<script>
+(() => {
+  const root = document.getElementById('pita-batch');
+  const get = id => root.querySelector('#' + id);
+  const update = () => {
+    const count = Number(get('pita-n').value);
+    const ballWeight = Number(get('pita-weight').value);
+    const whole = Number(get('pita-w').value);
+    const hours = Number(get('pita-time').value);
+    const factor = Number(get('pita-yeast').value);
+    const hydration = 0.65 + (whole - 30) * 0.001;
+    const yeastRate = ({12: 0.005, 24: 0.0025, 48: 0.0015}[hours]) * factor;
+    const flour = count * ballWeight / (1 + hydration + 0.04 + yeastRate);
+    const water = Math.round(flour * hydration);
+    const hold = Math.round(flour * 0.025);
+    const yeast = flour * yeastRate;
+    const rows = [
+      ['All-purpose flour', Math.round(flour * (1-whole/100))],
+      ['Whole-wheat flour', Math.round(flour * whole/100)],
+      ['Water · total allowance', water],
+      ['Fine salt', flour * 0.02],
+      ['Olive oil', flour * 0.02],
+      [get('pita-yeast').selectedOptions[0].text + ' yeast', yeast]
+    ];
+    get('pita-count').textContent = count;
+    get('pita-weight-label').textContent = ballWeight + ' g';
+    get('pita-percent').textContent = whole + '%';
+    get('pita-ingredients').innerHTML = rows.map(([name, value]) => '<tr><td>' + name + '</td><td class="text-end">' + (Number.isInteger(value) ? value : value.toFixed(1)) + ' g</td></tr>').join('');
+    get('pita-summary').textContent = count + ' pitas · approximately ' + ballWeight + ' g dough each · target batch ' + (count * ballWeight).toLocaleString() + ' g';
+    get('pita-water').textContent = 'Water: start with ' + (water-hold) + ' g; reserve ' + hold + ' g. Hydration up to ' + Math.round(hydration*100) + '%. Fridge target: 3–4°C.';
+    const mixes = Math.ceil(flour / 750);
+    get('pita-mixer').textContent = 'KitchenAid 6 qt plan: ' + mixes + ' equal mixer batch' + (mixes > 1 ? 'es' : '') + ' · about ' + Math.round(flour/mixes) + ' g flour per mix. Divide EVERY ingredient by ' + mixes + '.';
+    get('pita-ferment').textContent = hours === 12 ? 'Rest the kneaded dough covered for 20–30 minutes. Divide into approximately ' + ballWeight + ' g balls. Place in lightly oiled covered containers and refrigerate for 12 hours.' : 'Rest the kneaded dough covered for 30 minutes and fold once. Divide into shallow, lightly oiled covered containers and refrigerate in bulk for ' + hours + ' hours. Use several containers for large batches so the dough chills promptly.';
+    get('pita-shape').textContent = hours === 12 ? 'Take out the balls 60–90 minutes before rolling. At a cool room temperature, allow longer until relaxed and slightly puffy. Keep later baking batches refrigerated until needed.' : 'Remove dough about 2 hours before baking. After 30–45 minutes divide into approximately ' + ballWeight + ' g balls; cover and relax for 45–75 minutes, longer if still cold or tight.';
+    get('pita-baking').innerHTML = get('pita-oven').value === 'gas' ? '<p><strong>Stone target: 320–350°C / 608–662°F.</strong> Measure the surface with an infrared thermometer if available; the oven dial does not measure stone temperature. Preheat according to the oven manual. Start at the lower end and turn the flame low before launching.</p><p>Bake one pita at a time in your 10–12-inch oven, away from direct flame. Start watching at 30 seconds; roughly 60–120 seconds is a starting estimate. Rotate gently if one side colours faster, without puncturing the pocket. Remove once fully puffed and set, before it turns crisp. Adjust flame and position after the test pita. Allow stone recovery between bakes. Use the gas oven outdoors only.</p>' : '<p><strong>Bake mode, convection off initially: 450°F / 232°C.</strong> If your exact model allows 480°F / 250°C in Bake, that is an option if puffing is slow. Use a compatible stone only if permitted by the oven and stone instructions, with clearances around it. Preheat from cold for roughly 30–45 minutes total to heat the stone through; the ready beep measures air, not the stone.</p><p>Use the rack position recommended for your baking surface, leaving room above for the pita to inflate. Bake directly on the stone, one or two at a time without crowding. Without a compatible stone, use a suitable preheated metal baking tray; puffing may be less consistent. Check at 2 minutes; expect about 3–5 minutes at 450°F. Remove when fully inflated and set, still lightly coloured. Avoid Air Fry mode. Give the surface time to recover between batches.</p>';
+  };
+  root.querySelectorAll('input, select').forEach(control => control.addEventListener('input', update));
+  update();
+})();
+</script>
+
+<button type="button" onclick="window.print()">Print recipe</button></main></body></html>
