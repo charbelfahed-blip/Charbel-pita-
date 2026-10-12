@@ -17,7 +17,43 @@
 #same-recipe .recipe-stat{font-size:1.15rem;font-weight:700}
 #same-recipe .recipe-card{border:1px solid var(--line);border-radius:12px;padding:18px;margin:16px 0;background:var(--panel)}
 @media print{.recipe-selector,.print-button{display:none!important}#same-recipe .recipe-card{border:0;padding:0}}
-</style></head><body><main><nav class="recipe-selector" aria-label="Recipe selection">
+
+/* Pita Studio v2 — self-contained, mobile-first */
+:root{--bg:#f5f2e9;--panel:#fffdf8;--fg:#242b24;--line:#deded2;--accent:#28734c;--soft:#e9f3e8;--gold:#b87936}
+body{background:var(--bg);padding:18px 14px 65px}
+main{max-width:960px}h1{font-size:clamp(2rem,5vw,3rem);letter-spacing:-.035em}h2{letter-spacing:-.02em}
+.studio-head{max-width:960px;margin:0 auto 22px;display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--line);padding:12px 0 18px}
+.brand{font-weight:850;letter-spacing:-.035em;font-size:1.38rem}.brand small{display:block;font-weight:450;letter-spacing:0;color:#6c7168;font-size:.74rem}
+.brand-mark{display:inline-flex;align-items:center;justify-content:center;border-radius:13px;background:#e7ebdf;width:44px;height:44px;margin-right:8px}
+.brand-row{display:flex;align-items:center}.eyebrow{font-size:.74rem;font-weight:850;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+.hero{border-radius:22px;background:#244e3b;color:#fff;padding:27px 30px 26px;margin-bottom:18px;overflow:hidden;position:relative}
+.hero::after{content:'◌';position:absolute;font-size:15rem;line-height:1;color:#ffffff0d;right:-12px;top:-65px;pointer-events:none}
+.hero h1{color:#fff;margin:8px 0 10px}.hero p{max-width:620px;color:#e4efe6;margin:0}.hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.hero-pills span{background:#ffffff20;padding:5px 11px;border:1px solid #ffffff26;border-radius:20px;font-size:.83rem}
+.recipe-selector{border:0;background:transparent;padding:0;margin-bottom:24px}.recipe-selector>label{margin-bottom:10px}
+.recipe-selector select{border:2px solid var(--line);font-weight:650;border-radius:12px;padding:16px;background:var(--panel)}
+#cold-recipe,#same-recipe{animation:appear .2s ease-out}@keyframes appear{from{opacity:.35;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+#pita-batch,.recipe-card,#guided-recipe{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:20px;margin:18px 0}
+#pita-batch{border:0;padding:0;background:none}#pita-batch>.viz-controls,#pita-batch>div[aria-live],#guided-recipe{background:var(--panel);border:1px solid var(--line);padding:20px;border-radius:17px}
+#same-recipe .recipe-card{box-shadow:0 6px 25px #233e2810}
+input,select{transition:border-color .2s}input[type=number]{border-color:var(--line)!important}
+button{cursor:pointer;min-height:44px;transition:background .15s,transform .15s}button:active{transform:scale(.985)}
+#step-next,.primary-action{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:750}
+#step-back,.secondary-action{background:var(--panel)}
+#step-progress{font-size:.9rem}#step-title{font-size:1.5rem;margin:8px 0}#step-body{min-height:120px}
+.wizard{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:22px;margin:22px 0;box-shadow:0 12px 40px #233e280d}
+.wizard-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.wizard-tag{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:800}
+.progress-track{height:9px;background:#e4e7dd;overflow:hidden;border-radius:100px;margin:16px 0 8px}.progress-fill{height:100%;width:0;background:var(--accent);transition:width .25s}
+.wizard h3{margin:10px 0 7px;font-size:1.55rem}.wizard-content{min-height:125px}.wizard-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}.wizard-actions button{flex:1;min-width:115px}
+.timer-box{border:1px dashed #b2c6b4;border-radius:14px;padding:14px;margin:12px 0;background:#f3f8f0;color:#23342b}.timer-display{font-variant-numeric:tabular-nums;font-size:1.9rem;font-weight:850;letter-spacing:.03em}.timer-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.timer-actions button{min-width:90px}
+.timer-box label{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.timer-box input[type=number]{width:82px!important;min-width:82px;margin:0!important}
+.crumbs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.crumbs button{border-radius:12px;min-width:39px;padding:7px;font-size:.85rem}.crumbs button[aria-current=step]{background:#dcece0;border:2px solid var(--accent);font-weight:850}
+.crumbs button.complete{background:#ebf4e6}.details-guide{margin:20px 0}
+.studio-footer{text-align:center;font-size:.85rem;color:#6b716a;margin:35px auto;max-width:900px}
+@media(max-width:600px){.hero{padding:22px}.studio-head{margin-bottom:14px}.wizard{padding:16px}.viz-controls{gap:12px}#pita-batch>.viz-controls,#pita-batch>div[aria-live],#guided-recipe{padding:14px}.wizard-actions button{min-width:0}}
+@media print{.studio-head,.hero,.recipe-selector,.wizard-actions,.timer-box,.crumbs,.progress-track,.studio-footer{display:none!important}.wizard{border:0;padding:0;box-shadow:none}#cold-recipe[hidden],#same-recipe[hidden]{display:none!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style></head><body><header class="studio-head"><div class="brand-row"><div class="brand-mark" aria-hidden="true">🫓</div><div class="brand">PITA STUDIO<small>by Charbel · Artisan bread lab</small></div></div><span class="eyebrow">Bake better at home</span></header><main><section class="hero"><span class="eyebrow" style="color:#c0e4c9">THE PITA WORKSHOP</span><h1>Your perfect pocket, every time.</h1><p>Two ways to bake authentic Lebanese pita. Calculate your dough, choose your oven, and follow an interactive, hands-on baking guide.</p><div class="hero-pills"><span>⚖️ Live dough calculator</span><span>👨‍🍳 Guided bake mode</span><span>⏱️ Built-in timer</span></div></section><nav class="recipe-selector" aria-label="Recipe selection">
 <label class="form-label" for="recipe-select">🫓 Choose your pita recipe</label>
 <select id="recipe-select"><option value="cold">Cold-fermented pita · original</option><option value="same">Same-day pita · 65% hydration</option></select>
 </nav><div id="cold-recipe"><h1>Cold-fermented pita</h1><p>KitchenAid 6 qt · Breville or gas pizza oven</p><noscript>Interactive quantities require JavaScript. Open this page in a web browser. Default ingredients for 24 × 45 g pitas: 446 g all-purpose flour, 191 g whole wheat, 414 g water (start with 398 g), 12.7 g salt, 12.7 g olive oil and 3.2 g instant yeast. Cold ferment 12 hours.</noscript>
@@ -153,7 +189,7 @@ $('step-back').addEventListener('click',()=>{if(current>0)current--;render();});
 document.querySelectorAll('#pita-batch input,#pita-batch select').forEach(e=>e.addEventListener('input',build));build();
 })();
 </script>
-<button type="button" onclick="window.print()">Print recipe</button>
+<button type="button" onclick="window.print()">🖨 Print cold-ferment recipe</button>
 </div><!-- End original recipe: all original calculator and guide code remains unchanged. -->
 <section id="same-recipe" hidden aria-labelledby="same-title">
 <h1 id="same-title">Same-day Lebanese pita</h1>
@@ -222,6 +258,46 @@ function update(){
 }
 ['same-count','same-weight','same-oven'].forEach(id=>$(id).addEventListener('input',update));
 choose();update();
+})();
+</script>
+<footer class="studio-footer">PITA STUDIO · Made for home bakers · All quantities are starting estimates. Bake safely and follow equipment manuals.</footer>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const newStages=[...document.querySelectorAll('#same-recipe .stage')];
+const existingHeading=[...document.querySelectorAll('#same-recipe h2')].find(x=>x.textContent.includes('Step-by-step'));
+if(!newStages.length||!existingHeading)return;
+const wrap=document.createElement('details');wrap.className='details-guide';
+const caption=document.createElement('summary');caption.textContent='📖 View the full written method (all steps)';wrap.append(caption);
+existingHeading.parentNode.insertBefore(wrap,existingHeading);
+wrap.append(existingHeading);
+const copied=newStages.map(stage=>({title:stage.querySelector('h3')?.textContent||'Step',content:stage.innerHTML}));
+newStages.forEach(el=>wrap.append(el));
+const steps=copied.map((item,i)=>({...item,mins:[5,20,10,75,20,25,15,3,15][i]}));
+const guide=document.createElement('section');guide.className='wizard';guide.id='same-wizard';
+guide.innerHTML=`<div class="wizard-top"><span class="wizard-tag">LIVE COOK-ALONG</span><span id="sw-status">Step 1 of 9</span></div><div class="progress-track" aria-label="Step progress"><div class="progress-fill" id="sw-progress"></div></div><div class="crumbs" id="sw-crumbs" aria-label="Select step"></div><h3 id="sw-title"></h3><div class="wizard-content" id="sw-body" aria-live="polite"></div><div class="timer-box"><div class="wizard-tag">KITCHEN TIMER</div><label>Minutes <input id="sw-mins" type="number" min="1" max="600" value="5"></label><div class="timer-display" id="sw-time" role="timer" aria-live="off">05:00</div><div class="timer-actions"><button id="sw-start" type="button" class="primary-action">▶ Start</button><button id="sw-reset" type="button">↺ Reset</button></div><p class="text-small" id="sw-timer-note">Timer works while this page remains open. Keep your phone awake for long rests.</p></div><div class="wizard-actions"><button id="sw-prev" type="button">← Previous</button><button id="sw-next" type="button" class="primary-action">Mark done →</button><button id="sw-restart" type="button" class="secondary-action">Restart</button></div><p class="text-small">Follow the dough's appearance as well as the timer. Pita baking times are estimates, not guarantees.</p>`;
+wrap.parentNode.insertBefore(guide,wrap);
+let current=0,seconds=steps[0].mins*60,interval=null,deadline=0;
+function stop(){if(interval){clearInterval(interval);interval=null;}}
+function clock(){const mm=Math.floor(seconds/60),ss=seconds%60;$('sw-time').textContent=String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0');}
+function render(){stop();const step=steps[current];$('sw-status').textContent='Step '+(current+1)+' of '+steps.length;$('sw-title').textContent=step.title;$('sw-body').innerHTML=step.content;
+ // The oven control belongs in the original reference method: mirror its current instructions in the guided card.
+ if(current===7){const oven=$('same-oven');const box=$('sw-body');const select=document.createElement('select');select.setAttribute('aria-label','Baking equipment');select.innerHTML=oven.innerHTML;select.value=oven.value;box.insertBefore(select,box.firstChild);const note=document.createElement('div');box.append(note);function refresh(){oven.value=select.value;oven.dispatchEvent(new Event('input',{bubbles:true}));note.innerHTML=$('same-baking').innerHTML;}select.addEventListener('change',refresh);refresh();}
+ $('sw-progress').style.width=((current+1)/steps.length*100)+'%';$('sw-prev').disabled=current===0;$('sw-next').textContent=current===steps.length-1?'✓ Finish':'Mark done →';
+ $('sw-crumbs').innerHTML=steps.map((_,i)=>'<button type="button" data-step="'+i+'" '+(i===current?'aria-current="step"':'')+' class="'+(i<current?'complete':'')+'" aria-label="Go to step '+(i+1)+'">'+(i<current?'✓':(i+1))+'</button>').join('');
+ [...$('sw-crumbs').querySelectorAll('button')].forEach(b=>b.addEventListener('click',()=>{current=Number(b.dataset.step);render();}));
+ $('sw-mins').value=step.mins;seconds=step.mins*60;clock();$('sw-start').textContent='▶ Start';$('sw-timer-note').textContent='Timer works while this page remains open. Keep your phone awake for long rests.';
+ }
+ $('sw-prev').addEventListener('click',()=>{if(current>0){current--;render();}});
+ $('sw-next').addEventListener('click',()=>{if(current<steps.length-1){current++;render();}else{$('sw-timer-note').textContent='All steps complete — enjoy your pita!';}});
+ $('sw-restart').addEventListener('click',()=>{current=0;render();});
+ $('sw-mins').addEventListener('change',()=>{stop();const m=Math.min(600,Math.max(1,Math.round(Number($('sw-mins').value)||1)));$('sw-mins').value=m;seconds=m*60;clock();$('sw-start').textContent='▶ Start';});
+ $('sw-start').addEventListener('click',()=>{if(interval){seconds=Math.max(0,Math.ceil((deadline-Date.now())/1000));stop();$('sw-start').textContent='▶ Resume';clock();return;}if(seconds<=0){seconds=Math.max(1,Number($('sw-mins').value)||1)*60;}deadline=Date.now()+seconds*1000;$('sw-start').textContent='Ⅱ Pause';interval=setInterval(()=>{seconds=Math.max(0,Math.ceil((deadline-Date.now())/1000));clock();if(!seconds){stop();$('sw-start').textContent='▶ Restart';$('sw-timer-note').textContent='⏰ Timer finished. Check your dough before continuing.';}},300);});
+ $('sw-reset').addEventListener('click',()=>{stop();seconds=Number($('sw-mins').value)*60;clock();$('sw-start').textContent='▶ Start';});
+ render();
+ // Visual progress indicator for original cold-ferment cook-along, preserving its guided logic.
+ const oldGuide=$('guided-recipe');if(oldGuide){const bar=document.createElement('div');bar.className='progress-track';bar.innerHTML='<div class="progress-fill" id="cold-progress-bar"></div>';oldGuide.insertBefore(bar,$('step-progress'));const update=()=>{const found=($('step-progress').textContent||'').match(/Step (\d+) of (\d+)/);if(found)$('cold-progress-bar').style.width=(100*Number(found[1])/Number(found[2]))+'%';};new MutationObserver(update).observe($('step-progress'),{childList:true,characterData:true,subtree:true});update();}
 })();
 </script>
 </main></body></html>
