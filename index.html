@@ -3,7 +3,24 @@
 <style>
 :root{color-scheme:light dark;--bg:#faf8f3;--fg:#28251e;--panel:#fff;--line:#d7d1c5;--accent:#46634a}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 system-ui,-apple-system,sans-serif;padding:22px 18px 60px}main{max-width:800px;margin:auto}h1{font-size:1.8rem;line-height:1.2}h2{font-size:1.4rem;margin-top:28px}h3{font-size:1.1rem;margin-top:28px}p{margin:12px 0}.viz-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;margin:22px 0}.form-label{display:block;font-weight:600}select{display:block;width:100%;font:inherit;padding:10px;margin-top:8px;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:8px}input[type=range]{display:block;width:100%;min-height:44px;accent-color:var(--accent)}table{border-collapse:collapse;width:100%;margin:24px 0}th,td{padding:10px 6px;border-bottom:1px solid var(--line);text-align:left}.text-end{text-align:right;font-variant-numeric:tabular-nums}.text-small{font-size:.9rem}#pita-summary{font-weight:600}a{color:var(--accent)}details{border-top:1px solid var(--line);padding:16px 0}summary{cursor:pointer;font-weight:600}button{font:inherit;padding:10px 16px;color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:8px}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}@media(prefers-color-scheme:dark){:root{--bg:#20231f;--fg:#f4f1e9;--panel:#2c302b;--line:#52594e;--accent:#b1cfac}}@media print{body{background:white;color:black}.viz-controls,button{display:none}details{display:block}a{color:inherit}}
 .step-buttons{display:flex;gap:12px;justify-content:space-between;margin:20px 0}button:disabled{opacity:.4}#guided-recipe{margin-top:30px;padding-top:12px;border-top:2px solid var(--line)}#step-meta{font-weight:600}#step-progress{color:var(--accent);font-weight:600}@media print{#step-overview{display:block}.step-buttons{display:none}}
-</style></head><body><main><h1>Cold-fermented pita</h1><p>KitchenAid 6 qt · Breville or gas pizza oven</p><noscript>Interactive quantities require JavaScript. Open this page in a web browser. Default ingredients for 24 × 45 g pitas: 446 g all-purpose flour, 191 g whole wheat, 414 g water (start with 398 g), 12.7 g salt, 12.7 g olive oil and 3.2 g instant yeast. Cold ferment 12 hours.</noscript>
+
+/* Two recipe versions share the existing typography and colours. */
+.recipe-selector{border:1px solid var(--line);background:var(--panel);padding:16px;border-radius:12px;margin:0 0 20px}
+.recipe-selector select{margin:6px 0 0}
+[hidden]{display:none!important}
+#same-recipe .viz-controls{gap:14px}
+#same-recipe input[type=number]{display:block;width:100%;font:inherit;padding:10px;margin-top:8px;background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:8px}
+#same-recipe .hint{font-size:.9rem;color:var(--fg);opacity:.83}
+#same-recipe .stage{padding:16px 0;border-top:1px solid var(--line)}
+#same-recipe .stage h3{margin:2px 0}
+#same-recipe .stage p{margin:8px 0}
+#same-recipe .recipe-stat{font-size:1.15rem;font-weight:700}
+#same-recipe .recipe-card{border:1px solid var(--line);border-radius:12px;padding:18px;margin:16px 0;background:var(--panel)}
+@media print{.recipe-selector,.print-button{display:none!important}#same-recipe .recipe-card{border:0;padding:0}}
+</style></head><body><main><nav class="recipe-selector" aria-label="Recipe selection">
+<label class="form-label" for="recipe-select">🫓 Choose your pita recipe</label>
+<select id="recipe-select"><option value="cold">Cold-fermented pita · original</option><option value="same">Same-day pita · 65% hydration</option></select>
+</nav><div id="cold-recipe"><h1>Cold-fermented pita</h1><p>KitchenAid 6 qt · Breville or gas pizza oven</p><noscript>Interactive quantities require JavaScript. Open this page in a web browser. Default ingredients for 24 × 45 g pitas: 446 g all-purpose flour, 191 g whole wheat, 414 g water (start with 398 g), 12.7 g salt, 12.7 g olive oil and 3.2 g instant yeast. Cold ferment 12 hours.</noscript>
 <div id="pita-batch">
   <h2>Your pita batch</h2>
   <div class="viz-controls">
@@ -136,4 +153,75 @@ $('step-back').addEventListener('click',()=>{if(current>0)current--;render();});
 document.querySelectorAll('#pita-batch input,#pita-batch select').forEach(e=>e.addEventListener('input',build));build();
 })();
 </script>
-<button type="button" onclick="window.print()">Print recipe</button></main></body></html>
+<button type="button" onclick="window.print()">Print recipe</button>
+</div><!-- End original recipe: all original calculator and guide code remains unchanged. -->
+<section id="same-recipe" hidden aria-labelledby="same-title">
+<h1 id="same-title">Same-day Lebanese pita</h1>
+<p>Soft, flexible pita with a pocket · <strong>65% hydration</strong> · 80% all-purpose flour + 20% whole wheat · easy to knead and roll by hand.</p>
+<p class="hint">Plan on around 3–4 hours to reach the first bake, plus extra oven time for a 50-pita batch. No added sugar. All weights are raw dough weights.</p>
+<div class="recipe-card">
+<h2>Your same-day batch</h2>
+<div class="viz-controls">
+<label class="form-label">Number of pitas<input id="same-count" type="number" min="1" max="200" step="1" value="50"></label>
+<label class="form-label">Dough weight per pita (g)<input id="same-weight" type="number" min="25" max="150" step="5" value="45"></label>
+</div>
+<p id="same-summary" class="recipe-stat" aria-live="polite"></p>
+<table><thead><tr><th>Ingredient</th><th class="text-end">Weight</th></tr></thead><tbody id="same-ingredients"></tbody></table>
+<p class="hint">Base quantities for 50 × 45 g: 1,060 g all-purpose, 265 g whole wheat, 861 g water, 9 g instant yeast, 23 g salt and 32 g olive oil. Total: 2,250 g. Quantities scale together; weighing to 0.1 g helps for small batches.</p>
+<p id="same-batch-tip" class="hint"></p>
+</div>
+<h2>Step-by-step · manual method</h2>
+<div class="stage"><h3>1. Mix — about 5 minutes</h3><p>Combine the all-purpose flour, whole wheat flour and instant yeast. Add water at around 28–30°C (82–86°F), mixing until no dry flour remains. The dough may look rough. The water should feel comfortably warm, never hot.</p></div>
+<div class="stage"><h3>2. Covered rest — 20 minutes</h3><p>Cover the dough and let the flour absorb the water. This makes the 20% whole-wheat dough easier to knead. Avoid adding extra flour at this stage.</p></div>
+<div class="stage"><h3>3. Add salt and oil; knead — 8–12 minutes</h3><p>Pinch and fold in all the salt and olive oil, then knead by hand on a clean, lightly oiled worktop. Push, fold and rotate until smooth and elastic, with a soft slightly tacky feel. If it fights back, cover and rest 5–10 minutes before continuing. For the default 2.25 kg batch, divide into two portions for easier handling; recombine for the rise.</p></div>
+<div class="stage"><h3>4. First rise — about 60–90 minutes</h3><p>Put the dough in lightly oiled, covered bowls at roughly 22–24°C (72–75°F). Wait until noticeably airy and around 70–100% larger, rather than following the clock blindly. A cooler kitchen may take longer; a warmer one may be quicker.</p></div>
+<div class="stage"><h3>5. Divide and make balls — about 15–25 minutes</h3><p>Divide into portions of your selected dough weight (<span id="same-ball-size">45</span> g by default). Round smoothly with seams tucked underneath. Cover all the balls to prevent a dry skin.</p></div>
+<div class="stage"><h3>6. Relax the balls — 20–30 minutes</h3><p>Rest covered until the dough rolls without springing back. Begin preheating your oven or baking surface during this rest (earlier for a thick pizza stone).</p></div>
+<div class="stage"><h3>7. Roll and short final rest — 10–15 minutes</h3><p>On a lightly floured counter, roll each 45 g piece to roughly 12–14 cm across and 2–3 mm thick. Keep thickness even, including at the edges, and avoid holes. Larger or smaller dough weights need appropriately adjusted diameters. Keep rolled rounds covered for 10–15 minutes, rolling only a few ahead of the oven.</p></div>
+<div class="stage"><h3>8. Bake — choose your equipment</h3>
+<label class="form-label" for="same-oven">Baking equipment<select id="same-oven">
+<option value="breville">Breville Smart Oven Air Fryer</option><option value="home">Conventional home oven</option><option value="gas">Outdoor gas pizza oven</option><option value="pan">Cast-iron pan</option>
+</select></label>
+<div id="same-baking" aria-live="polite"></div>
+</div>
+<div class="stage"><h3>9. Keep soft and store</h3><p>Remove each pita as soon as it is inflated and cooked, before deep browning. Stack immediately under a clean towel; cool fully before sealing in bags. Freeze extras in portions the same day. Pitas that do not make pockets are still good as flatbread.</p></div>
+<h2>Approximate same-day timeline</h2>
+<p>00:00 mix → 00:05 covered flour rest → 00:25 knead → 00:40 first rise → ~02:00 divide/ball → ~02:25 relax and roll → ~02:45 start baking. Total time varies with room temperature, stone preheat and how many pitas fit per bake.</p>
+<details><summary>Tips for puffing and troubleshooting</summary>
+<p><strong>No pocket:</strong> Check that the stone is properly preheated, the rounds are even without tears, and the surfaces have not dried out. Test one pita before baking all 50.</p>
+<p><strong>Dough springs back:</strong> Keep it covered and relax another 5–10 minutes.</p>
+<p><strong>Stiff after baking:</strong> Avoid adding too much bench flour and do not leave pitas in the oven until brown; cover them promptly.</p>
+<p><strong>Working through 50 pieces:</strong> Keep unbaked dough covered and stagger rolling/baking to prevent overproofing or drying.</p>
+</details>
+<button class="print-button" type="button" onclick="window.print()">Print selected recipe</button>
+</section>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const select=$('recipe-select'), cold=$('cold-recipe'), same=$('same-recipe');
+function choose(){const current=select.value==='same';cold.hidden=current;same.hidden=!current;document.title=current?'Charbel’s Pita · Same-day 65% hydration':'Charbel’s Pita · Cold-fermented';}
+select.addEventListener('change',choose);
+const base=[['All-purpose flour',1060],['Whole wheat flour',265],['Water',861],['Instant yeast',9],['Salt',23],['Olive oil',32]];
+const baking={
+ breville:'<p><strong>Bake mode, not Air Fry.</strong> Preheat to the highest temperature allowed by your particular model, often 232°C / 450°F (some support 250°C / 480°F). Use a compatible pizza stone only if the stone and oven manuals permit it and clearances are sufficient; otherwise use a suitable metal tray. Heat the stone thoroughly, often 30–45 minutes. Bake about 3–5 minutes at 450°F, checking for inflation; remove when set and lightly coloured. Leave room above for the pocket.</p>',
+ home:'<p>Preheat a stone or baking steel at around 250–260°C / 480–500°F, if your oven and baking surface allow it, for about 40–45 minutes. Bake directly on the hot surface for approximately 2–4 minutes, until puffed and set. Keep adequate clearance above.</p>',
+ gas:'<p><strong>Outdoors only.</strong> Preheat the stone to about 320–350°C / 608–662°F (an infrared thermometer helps). Turn the flame low before launch and position the pita away from direct flame. Watch from 30 seconds; roughly 60–120 seconds is a starting estimate. Rotate gently if needed; avoid puncturing the pocket and let the stone recover between batches.</p>',
+ pan:'<p>Heat a heavy cast-iron pan over medium-high to high heat. Cook roughly 45–60 seconds on one side, flip for another 45–60 seconds and flip again if needed. Pita may puff less consistently than on a very hot baking stone.</p>'
+};
+function update(){
+ const n=Math.max(1,Math.min(200,Math.round(Number($('same-count').value)||50)));
+ const weight=Math.max(25,Math.min(150,Number($('same-weight').value)||45));
+ const total=n*weight, k=total/2250;
+ const fmt=x=>x.toLocaleString('en-CA',{maximumFractionDigits:1});
+ $('same-summary').textContent=n+' pitas × '+fmt(weight)+' g = '+fmt(total)+' g total dough';
+ $('same-ball-size').textContent=fmt(weight);
+ $('same-ingredients').innerHTML=base.map(([label,g])=>'<tr><td>'+label+'</td><td class="text-end">'+fmt(g*k)+' g</td></tr>').join('');
+ $('same-batch-tip').textContent=n>=40?'Large batch: split your hand-kneading into two manageable portions, and roll just a few pitas at a time.':'Rest and roll only as many pieces as you can bake promptly.';
+ $('same-baking').innerHTML=baking[$('same-oven').value];
+}
+['same-count','same-weight','same-oven'].forEach(id=>$(id).addEventListener('input',update));
+choose();update();
+})();
+</script>
+</main></body></html>
