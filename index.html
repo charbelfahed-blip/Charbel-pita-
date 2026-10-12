@@ -388,4 +388,58 @@ function render(){stop();const step=steps[current];$('sw-status').textContent='S
   refreshCold();refreshSame();
 })();
 </script>
+<style>
+.mix-method-panel{margin:18px 0;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.mix-method-panel h3{margin:0 0 7px}.mix-method-panel p{margin:8px 0}
+.mix-method-panel select{margin:8px 0}.method-step-card{padding:16px;margin:10px 0 16px;border-left:4px solid var(--accent);background:var(--panel);border-radius:10px}
+.method-step-card h4{margin:0 0 8px;font-size:1rem}.method-step-card p{margin:8px 0}.method-step-card ul{margin:10px 0;padding-left:24px}
+.method-step-card .mini-amounts{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:8px;margin:10px 0}
+.method-step-card .mini-amounts span{display:block;border:1px solid var(--line);border-radius:8px;padding:8px;font-size:.91rem}
+.method-step-card .mini-amounts b{display:block;font-size:1.05rem}
+</style>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const format=n=>(Math.round(n*10)/10).toLocaleString('en-CA',{maximumFractionDigits:1});
+const makeSelector=(which,target,defaultValue)=>{
+ const box=document.createElement('section');box.className='mix-method-panel';
+ box.innerHTML='<h3>🥣 Mixing method</h3><label class="form-label" for="'+which+'">How will you prepare the dough?</label><select id="'+which+'"><option value="manual">✋ Mix and knead by hand</option><option value="mixer">⚙️ KitchenAid 6 qt · dough hook</option></select><p class="text-small" id="'+which+'-help"></p>';
+ target.parentNode.insertBefore(box,target);$(which).value=defaultValue;
+};
+makeSelector('cold-mix-method',$('pita-batch').querySelector('.viz-controls'),'mixer');
+makeSelector('same-mix-method',$('same-recipe').querySelector('.viz-controls'),'manual');
+const coldRef=[...document.querySelectorAll('#cold-recipe details')].find(d=>d.textContent.includes('Full reference method'));
+const originalColdRef=coldRef?.querySelector('h3');
+const coldRefParas=originalColdRef?[originalColdRef.nextElementSibling,originalColdRef.nextElementSibling?.nextElementSibling]:[];
+const sameHeading=[...document.querySelectorAll('#same-recipe h2')].find(h=>h.textContent.includes('Step-by-step'));
+const sameStages=[...document.querySelectorAll('#same-recipe .stage')];
+function cold(){const n=+$('pita-n').value,b=+$('pita-weight').value,w=+$('pita-w').value,h=+$('pita-time').value,y=+$('pita-yeast').value;const hydrate=.65+(w-30)*.001,rate=({12:.005,24:.0025,48:.0015}[h])*y,f=n*b/(1+hydrate+.04+rate);const batches=Math.max(1,Math.ceil(f/750));return {n,b,batches,ap:f*(1-w/100),ww:f*w/100,water:Math.round(f*hydrate),reserved:Math.round(f*.025),yeast:f*rate,salt:f*.02,oil:f*.02};}
+function same(){const n=Math.max(1,Math.min(200,Math.round(+$('same-count').value||50))),b=Math.max(25,Math.min(150,+$('same-weight').value||45)),k=n*b/2250,f=(1060+265)*k,batches=Math.max(1,Math.ceil(f/750));return {n,b,batches,ap:1060*k,ww:265*k,water:861*k,yeast:9*k,salt:23*k,oil:32*k};}
+function card(title,description,a,per){const el=document.createElement('div');el.className='method-step-card';let out='<h4>'+title+'</h4><p>'+description+'</p>';if(a){out+='<div class="mini-amounts">'+Object.entries(a).map(([key,val])=>'<span><b>'+format(val/(per||1))+' g</b>'+key+'</span>').join('')+'</div>';}el.innerHTML=out;return el;}
+function refreshCold(){const a=cold(),isMix=$('cold-mix-method').value==='mixer',b=a.batches;
+ $('cold-mix-method-help').textContent=isMix?b+' separate mixer batch'+(b!==1?'es':'')+' (up to ~750 g flour each). The instructions and quantities below show amounts per mixer batch.':'Hand-knead the dough in manageable portions. A short covered rest helps avoid overworking.';
+ if(coldRef&&originalColdRef){originalColdRef.textContent=isMix?'1. Mix with your KitchenAid':'1. Mix and knead by hand';coldRefParas[0].innerHTML=isMix?'For each of '+b+' mixer batches, combine the flours and starting water, cover for 25 minutes, then add yeast, salt and oil. Use the ingredient amounts shown in the guided steps for each batch.':'Combine flour and starting water in a large bowl (use multiple bowls if needed). Rest covered for 25 minutes, then pinch and fold in yeast, salt and oil. For large batches split dough into workable portions.';coldRefParas[1].innerHTML=isMix?'Use the dough hook on <strong>speed 2 for roughly 4–6 minutes</strong>, stopping to check elasticity. Add held-back water only if needed. Respect your KitchenAid’s limits.':'Knead manually on a clean, lightly oiled surface for approximately <strong>8–12 minutes</strong>, using a push–fold–rotate motion. Rest covered for 5–10 minutes if tight. Stop when smooth, elastic and lightly tacky.';}
+ const step=Number(($('step-progress')?.textContent||'').match(/Step (\d+)/)?.[1]||1),body=$('step-body');if(!body)return;body.querySelector('.method-step-card')?.remove();if(step>5)return;
+ let node;if(step===1){node=card(isMix?'KitchenAid · weigh each of '+b+' batches':'Manual · weigh your full batch',isMix?'Repeat the quantities below for each mixer batch. Keep later batches covered.':'These are totals for the full recipe. You may divide ingredients evenly into two or more bowls for easier hand-kneading.',null);}else if(step===2){node=card(isMix?'KitchenAid · combine by hand in mixer bowl':'Manual · combine in a large bowl',isMix?'Mix the measured flour and starting water from this step by hand in the mixer bowl until no dry spots remain. Do not run the dough hook yet.':'Stir flour and starting water together with a strong spoon or your hands until no dry spots remain. No kneading yet.',null);}else if(step===3){node=card('Covered flour soak','Rest the rough mixture covered for 25 minutes. This relaxes the dough before '+(isMix?'machine kneading.':'hand kneading.'),null);}else if(step===4){node=card(isMix?'KitchenAid · add ingredients':'Manual · pinch and fold',isMix?'Add yeast, salt and olive oil for EACH of the '+b+' mixer batches, then fit the dough hook.':'Distribute yeast, salt and olive oil throughout the dough by pinching and folding before kneading.',null);}else{node=card(isMix?'KitchenAid · knead on speed 2':'Manual · knead 8–12 minutes',isMix?'Knead on speed 2, checking after 2 minutes; 4–6 minutes total is a starting point. Stop if the mixer strains.':'Push the dough away with the heel of your hand, fold it back and turn. Continue until smooth and elastic, about 8–12 minutes. Work in portions if necessary; use rests rather than adding much flour.',null);}
+ body.insertBefore(node,body.firstChild);
+}
+function refreshSame(){const a=same(),isMix=$('same-mix-method').value==='mixer',b=a.batches;
+ $('same-mix-method-help').textContent=isMix?'Use '+b+' separate KitchenAid batch'+(b!==1?'es':'')+' (approximately '+format((a.ap+a.ww)/b)+' g flour each). Ingredient amounts are displayed per batch below.':'Hand-knead in a large bowl or split into manageable pieces. The same ingredient formula and 65% hydration apply.';
+ if(sameHeading)sameHeading.textContent=isMix?'Step-by-step · KitchenAid 6 qt method':'Step-by-step · manual method';
+ if(sameStages.length){const first=sameStages[0].querySelector('p'),third=sameStages[2].querySelector('p');if(first)first.textContent=isMix?'For each mixer batch, combine both flours, instant yeast and water until no dry flour remains. Follow the per-batch quantities in your guided instructions. Rest before kneading.':'Combine the flours, yeast and warm water by hand, mixing until no dry flour remains. The dough can look rough.';if(third)third.textContent=isMix?'Add salt and olive oil to each mixer batch. Fit the dough hook and knead on speed 2, checking after 2 minutes; roughly 4–6 minutes total is a starting point. Stop when smooth and elastic, and respect your mixer’s capacity.':'Add salt and olive oil, pinch and fold in, then knead by hand for 8–12 minutes until smooth and elastic. If tight, cover and rest 5–10 minutes.';}
+ const step=Number(($('sw-status')?.textContent||'').match(/Step (\d+)/)?.[1]||1),body=$('sw-body');if(!body)return;body.querySelector('.method-step-card')?.remove();
+ if(![1,2,3].includes(step))return;let node;
+ if(step===1){node=card(isMix?'KitchenAid · batch '+ 'quantities':'Manual · full dough quantities',isMix?'Prepare '+b+' mixer batches separately. Add the following to EACH bowl, not all at once.':'Use these amounts for the full batch. For easier handling you may split the dough into smaller portions.',{ 'All-purpose flour':a.ap,'Whole wheat flour':a.ww,'Water':a.water,'Instant yeast':a.yeast},isMix?b:1);}
+ if(step===2){node=card('Rest covered for 20 minutes','Let the whole wheat absorb the water. No machine mixing or hand kneading during this rest.',null);}
+ if(step===3){node=card(isMix?'KitchenAid · add and knead':'Manual · add and knead',isMix?'For EACH of '+b+' mixer batches, add these amounts, then use dough hook on speed 2 for about 4–6 minutes, checking after 2. Stop if mixer strains.':'Add these quantities across the full batch, then knead by hand for 8–12 minutes. Divide dough into portions if it feels unwieldy.',{'Salt':a.salt,'Olive oil':a.oil},isMix?b:1);}
+ body.insertBefore(node,body.firstChild);
+}
+$('cold-mix-method').addEventListener('change',refreshCold);$('same-mix-method').addEventListener('change',refreshSame);
+new MutationObserver(refreshCold).observe($('step-title'),{childList:true});new MutationObserver(refreshSame).observe($('sw-title'),{childList:true});
+['pita-n','pita-weight','pita-w','pita-time','pita-yeast'].forEach(id=>$(id)?.addEventListener('input',()=>setTimeout(refreshCold,0)));
+['same-count','same-weight'].forEach(id=>$(id)?.addEventListener('input',()=>setTimeout(refreshSame,0)));
+refreshCold();refreshSame();
+})();
+</script>
 </main></body></html>
