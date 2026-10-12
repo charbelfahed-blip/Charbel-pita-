@@ -300,4 +300,92 @@ function render(){stop();const step=steps[current];$('sw-status').textContent='S
  const oldGuide=$('guided-recipe');if(oldGuide){const bar=document.createElement('div');bar.className='progress-track';bar.innerHTML='<div class="progress-fill" id="cold-progress-bar"></div>';oldGuide.insertBefore(bar,$('step-progress'));const update=()=>{const found=($('step-progress').textContent||'').match(/Step (\d+) of (\d+)/);if(found)$('cold-progress-bar').style.width=(100*Number(found[1])/Number(found[2]))+'%';};new MutationObserver(update).observe($('step-progress'),{childList:true,characterData:true,subtree:true});update();}
 })();
 </script>
+
+<style>
+/* Quantities shown where the baker needs them, inside the cook-along steps. */
+.step-quantities{border:1px solid var(--line);border-radius:13px;padding:14px 16px;margin:14px 0 18px;background:var(--bg)}
+.step-quantities strong{display:block;margin-bottom:7px;color:var(--accent)}
+.step-quantities .quant-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+.step-quantities .quant-chip{border:1px solid var(--line);border-radius:9px;padding:8px 10px;background:var(--panel)}
+.step-quantities .quant-chip b{display:block;font-size:1.08rem;font-variant-numeric:tabular-nums}
+.step-quantities .quant-chip span{font-size:.8rem;opacity:.85}
+.step-quantities .quant-note{font-size:.87rem;margin:9px 0 0;opacity:.83}
+@media print{.step-quantities{break-inside:avoid}}
+</style>
+<script>
+(()=>{
+  'use strict';
+  const $=id=>document.getElementById(id);
+  const fmt=n=>(Math.round(n*10)/10).toLocaleString('en-CA',{maximumFractionDigits:1});
+  const grams=(label,value)=>({label,value:fmt(value)+' g'});
+  function block(heading,items,note){
+    const section=document.createElement('section');section.className='step-quantities';
+    const header=document.createElement('strong');header.textContent=heading;section.append(header);
+    if(items.length){const grid=document.createElement('div');grid.className='quant-grid';items.forEach(({label,value})=>{
+      const chip=document.createElement('div');chip.className='quant-chip';
+      const amount=document.createElement('b');amount.textContent=value;
+      const caption=document.createElement('span');caption.textContent=label;
+      chip.append(amount,caption);grid.append(chip);
+    });section.append(grid);}
+    if(note){const text=document.createElement('p');text.className='quant-note';text.textContent=note;section.append(text);}
+    return section;
+  }
+  function coldAmounts(){
+    const n=Number($('pita-n').value),b=Number($('pita-weight').value),w=Number($('pita-w').value),h=Number($('pita-time').value),y=Number($('pita-yeast').value);
+    const hydration=.65+(w-30)*.001,rate=({12:.005,24:.0025,48:.0015}[h])*y;
+    const flour=n*b/(1+hydration+.04+rate),mixes=Math.max(1,Math.ceil(flour/750));
+    const water=Math.round(flour*hydration),held=Math.round(flour*.025);
+    return {n,b,h,mixes,water,held,ap:flour*(1-w/100),ww:flour*w/100,salt:flour*.02,oil:flour*.02,yeast:flour*rate};
+  }
+  function sameAmounts(){const n=Math.max(1,Math.min(200,Number($('same-count').value)||50)),b=Math.max(25,Math.min(150,Number($('same-weight').value)||45)),k=n*b/2250;
+    return {n,b,ap:1060*k,ww:265*k,water:861*k,yeast:9*k,salt:23*k,oil:32*k};}
+  function coldStep(){const m=($('step-progress')?.textContent||'').match(/Step (\d+) of/);return m?Number(m[1]):1;}
+  function quantitiesForCold(step){const a=coldAmounts(),per=x=>x/a.mixes;
+    if(step===1)return block('⚖️ Weigh for each mixer batch',[
+      grams('All-purpose',per(a.ap)),grams('Whole wheat',per(a.ww)),grams('Total water',per(a.water)),grams('Instant / selected yeast',per(a.yeast)),grams('Salt',per(a.salt)),grams('Olive oil',per(a.oil))],
+      a.mixes+' mixer batch'+(a.mixes>1?'es':'')+' total. These are quantities PER batch, not the whole dough.');
+    if(step===2||step===3)return block('💧 Add now — for each mixer batch',[
+      grams('All-purpose flour',per(a.ap)),grams('Whole wheat flour',per(a.ww)),grams('Starting water',per(a.water-a.held))],
+      'Hold back '+fmt(per(a.held))+' g water per batch. Yeast, salt and oil are added after the covered rest.');
+    if(step===4||step===5)return block('🧂 Add now — for each mixer batch',[
+      grams('Selected yeast',per(a.yeast)),grams('Salt',per(a.salt)),grams('Olive oil',per(a.oil)),grams('Reserved water (optional)',per(a.held))],
+      'Do not add the reserved water unless the dough needs it. The yeast quantity reflects your chosen type and fermentation time.');
+    if(step===7||step===8||step===10)return block('🫓 Shape this batch',[{label:'Portions',value:String(a.n)},{label:'Each dough ball',value:fmt(a.b)+' g'}],
+      step===7?'Weigh dough balls before cold fermentation for the 12-hour method.':'Keep balls and rolled rounds covered.');
+    if(step===9||step===11)return block('🔥 Baking target',[{label:'Dough pieces',value:String(a.n)},{label:'Each pita (raw)',value:fmt(a.b)+' g'}],
+      'Bake one test pita first; equipment temperatures and times are in this step.');
+    return block('📋 Your selected batch',[{label:'Pitas',value:String(a.n)},{label:'Per pita',value:fmt(a.b)+' g'}],
+      'All ingredients are already mixed; no additional flour, yeast or water is required at this step.');
+  }
+  function quantitiesForSame(step){const a=sameAmounts();
+    if(step===1)return block('⚖️ Add to your bowl now',[
+      grams('All-purpose flour',a.ap),grams('Whole wheat flour',a.ww),grams('Instant yeast',a.yeast),grams('Water (65%)',a.water)],
+      'Salt and oil come later. Water around 28–30°C; use the full listed water amount.');
+    if(step===2)return block('⏱️ Rest the dough',[{label:'Covered rest',value:'20 minutes'}],
+      'No extra ingredients yet. The entire flour and water quantities are already in the bowl.');
+    if(step===3)return block('🧂 Add now',[
+      grams('Salt',a.salt),grams('Olive oil',a.oil)],
+      'All the flour, water and yeast were added in step 1. Knead this full batch, or split it into two manageable portions.');
+    if(step===4)return block('🌡️ First rise',[{label:'Entire dough',value:fmt(a.n*a.b)+' g'},{label:'Approx. rise',value:'60–90 min'}],
+      'No new ingredients. Watch for roughly 70–100% expansion.');
+    if(step===5)return block('⚖️ Divide your dough',[{label:'Number of balls',value:String(a.n)},{label:'Weight per ball',value:fmt(a.b)+' g'},{label:'Total dough',value:fmt(a.n*a.b)+' g'}],
+      'Weigh each ball before baking. A small scale helps keep all pitas even.');
+    if(step===6||step===7)return block('🫓 Work with these pieces',[{label:'Dough balls',value:String(a.n)},{label:'Each ball',value:fmt(a.b)+' g'}],
+      step===7?'For 45 g balls, roll approximately 12–14 cm wide and 2–3 mm thick; adjust diameter for other weights.':'Keep all pieces covered while they relax.');
+    if(step===8)return block('🔥 Bake your selected batch',[{label:'Pita count',value:String(a.n)},{label:'Raw weight each',value:fmt(a.b)+' g'}],
+      'Oven instructions below change with your equipment selection. Bake one tester first.');
+    return block('🧺 Cooling and storage',[{label:'Fresh pitas',value:String(a.n)},{label:'Approx. raw batch',value:fmt(a.n*a.b)+' g'}],
+      'Stack under a clean towel right away, then cool fully before bagging or freezing.');
+  }
+  function replaceAt(container,node){if(!container)return;container.querySelector('.step-quantities')?.remove();container.insertBefore(node,container.firstChild);}
+  function refreshCold(){const body=$('step-body');if(body)replaceAt(body,quantitiesForCold(coldStep()));}
+  function refreshSame(){const body=$('sw-body');if(body){const m=($('sw-status')?.textContent||'').match(/Step (\d+) of/);replaceAt(body,quantitiesForSame(m?Number(m[1]):1));}}
+  // Existing guided recipe renders asynchronously when an option or step changes.
+  function watch(id,callback){const node=$(id);if(node){new MutationObserver(callback).observe(node,{childList:true,characterData:true,subtree:true});}}
+  watch('step-title',refreshCold);watch('sw-title',refreshSame);
+  ['pita-n','pita-weight','pita-w','pita-time','pita-yeast'].forEach(id=>$(id)?.addEventListener('input',refreshCold));
+  ['same-count','same-weight'].forEach(id=>$(id)?.addEventListener('input',refreshSame));
+  refreshCold();refreshSame();
+})();
+</script>
 </main></body></html>
