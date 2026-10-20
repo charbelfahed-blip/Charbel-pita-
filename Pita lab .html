@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#17251f">
+<meta name="description" content="Offline-friendly mobile baking coach and flexible date/time planner for the Ooni Karu 2 Pro. Live ingredients, cold fermentation, KitchenAid or hand mixing, gas or wood baking, and a puff tracker.">
+<title>Pita Lab 3.0 · Personal Baking Coach · Ooni Karu 2 Pro</title>
+<style>
+:root{--bg:#f4f1e8;--ink:#25352c;--muted:#66736a;--dark:#162b22;--pine:#295b43;--lime:#cee5a6;--card:#fffdf7;--line:#e3e6da;--sand:#e9d6b8;--accent:#d98550;--shadow:0 12px 32px rgba(29,46,36,.08);color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;line-height:1.45}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}b,strong{font-weight:700}.wrap{width:min(1180px,calc(100% - 36px));margin:auto}.top{background:var(--dark);color:#fff;overflow:hidden;position:relative}.top:after{content:"";position:absolute;border:1px solid #66816b55;border-radius:50%;width:420px;height:420px;right:-120px;top:-220px;pointer-events:none}.nav{padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:.86rem}.nav a{text-decoration:none;border-bottom:1px solid #6c8575}.mark{font-weight:850;letter-spacing:.03em}.hero{display:grid;grid-template-columns:1.18fr .82fr;align-items:center;gap:24px;padding:52px 0 62px}.eyebrow{color:#cee5a6;letter-spacing:.18em;text-transform:uppercase;font-size:.73rem;font-weight:800}.hero h1{font-family:Georgia,serif;font-size:clamp(2.8rem,7vw,5.6rem);font-weight:normal;line-height:.98;letter-spacing:-.045em;margin:14px 0}.hero p{color:#e0e8df;max-width:56ch;font-size:1.04rem}.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.pill{border:1px solid #ffffff40;border-radius:25px;padding:6px 12px;font-size:.77rem;font-weight:650}.hero-art{max-width:390px;width:100%;justify-self:center;filter:drop-shadow(0 15px 25px #0004)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.btn{border:0;border-radius:11px;background:var(--pine);color:white;font-weight:700;padding:12px 17px;box-shadow:none;min-height:44px}.btn:hover{filter:brightness(1.1)}.btn:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #ca9b5b;outline-offset:2px}.btn.ghost{border:1px solid var(--line);color:var(--ink);background:transparent}.top .btn{background:#d5edb8;color:#203424}.top .btn.ghost{color:white;border-color:#66816a;background:transparent}.section{padding-top:29px;padding-bottom:7px}.section-title{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-bottom:14px}.section h2{font-size:clamp(1.45rem,3vw,2rem);letter-spacing:-.03em;line-height:1.2;margin:0}.hint{color:var(--muted);font-size:.86rem}.cards{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}.overline{font-size:.75rem;text-transform:uppercase;letter-spacing:.14em;color:var(--pine);font-weight:850;margin:0 0 15px}.controls{display:grid;grid-template-columns:1fr 1fr;gap:20px}.field{min-width:0}.field label{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:750;font-size:.9rem;margin-bottom:8px}.field label output{color:var(--pine);font-variant-numeric:tabular-nums}.field input[type=range]{width:100%;accent-color:var(--pine)}.field select{background:#f8f8f2;color:var(--ink);padding:10px;width:100%;border:1px solid #cfd8ca;border-radius:9px}.seg{display:flex;gap:5px;background:#edf1e8;border-radius:11px;padding:5px;width:100%}.seg button{flex:1;background:none;border:none;border-radius:8px;font-size:.82rem;padding:10px 7px;color:var(--muted);font-weight:700}.seg button.active{background:white;color:var(--pine);box-shadow:0 1px 4px #0001}.ingredients{display:grid;grid-template-columns:1fr 1fr;gap:0 25px}.ing{border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:11px 0}.ing .amt{font-weight:850;font-variant-numeric:tabular-nums;white-space:nowrap}.total{background:#e8f0e2;padding:15px 17px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;margin-top:16px}.total strong{font-size:1.6rem}.muted{color:var(--muted)}.day-badge{display:inline-block;background:#e4eddf;border-radius:22px;color:#2c5a40;font-weight:800;font-size:.78rem;padding:6px 10px}.timeline{display:grid;grid-template-columns:1fr 1fr;gap:16px}.timeline h3{font-size:1rem;margin:0 0 13px}.event{display:grid;grid-template-columns:64px 1fr;gap:12px;padding:11px 0;border-top:1px solid var(--line)}.event:first-of-type{border:0}.event time{font-weight:850;color:var(--pine);font-variant-numeric:tabular-nums}.event p{margin:4px 0 0;color:var(--muted);font-size:.86rem}.guide-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(235px,.35fr);gap:16px}.step-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:10px}.steps-indicators{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;margin:15px 0 20px}.steps-indicators button{height:8px;background:#e4e8dc;border:0;border-radius:9px;padding:0}.steps-indicators button.active{background:#4f9368}.steps-indicators button.done{background:#9dc78d}.step-title{font-family:Georgia,serif;font-size:1.9rem;font-weight:normal;margin:10px 0}.step-body{min-height:180px}.step-body p{margin:0 0 13px}.step-body ol,.step-body ul{padding-left:22px}.step-body li{margin:8px 0}.step-qty{display:grid;grid-template-columns:1fr auto;gap:10px 18px;border:1px solid var(--line);padding:15px;border-radius:12px;margin:12px 0;background:#f7f8f2}.step-qty span:nth-child(even){font-weight:800;font-variant-numeric:tabular-nums}.check{display:flex;gap:10px;align-items:center;font-weight:700;margin-top:18px}.check input{accent-color:#367b50;width:18px;height:18px}.step-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:19px;flex-wrap:wrap}.side-note{background:var(--dark);color:white;border-radius:16px;padding:22px}.side-note h3{margin:0 0 16px;font-family:Georgia,serif;font-size:1.6rem;font-weight:normal}.side-note p,.side-note li{color:#e4ebe4;font-size:.88rem}.side-note li{margin:13px 0}.side-note .highlight{color:#d3edae;font-weight:800;font-size:2rem;line-height:1.1}.qa{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.q{border-radius:15px;background:#fffdf7;border:1px solid var(--line);padding:17px}.q h4{margin:0 0 9px;font-size:1rem}.q p{color:var(--muted);font-size:.89rem;margin:0}.test-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:15px}.test{background:#f0f4ed;border-radius:12px;padding:13px 5px;text-align:center;font-weight:700}.test small{display:block;color:var(--muted);margin-bottom:7px}.test select{width:95%;font-size:.8rem;padding:8px 3px;border-radius:7px;border:1px solid #d5dfd0;background:white}.record{display:grid;grid-template-columns:1fr 1fr;gap:20px}.notes textarea{min-height:112px;resize:vertical;width:100%;border:1px solid #ced8cb;border-radius:12px;padding:12px;background:#fcfdf8;color:var(--ink)}.footer{padding:38px 0 50px;color:var(--muted);font-size:.8rem}.footer a{color:var(--pine)}.toast{position:fixed;bottom:22px;right:22px;background:var(--dark);color:white;padding:12px 17px;border-radius:12px;box-shadow:var(--shadow);z-index:9;display:none}.toast.show{display:block}.print-only{display:none}.status{font-size:.85rem;color:var(--muted)}.progress-count{white-space:nowrap;font-size:.83rem;color:var(--muted);font-weight:800}
+
+/* Flexible planner: spacious touch controls and clear dates, including on iPhone. */
+.planner-controls input[type=date],.planner-controls input[type=time]{display:block;width:100%;min-width:0;min-height:46px;border:1px solid #cfd8ca;border-radius:9px;background:#f8f8f2;color:var(--ink);padding:8px 10px;font-size:1rem}
+.planner-controls .field{min-width:0}.planner-controls input[type=range]{min-height:30px}
+.metric-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}.metric-pair>div{background:#edf1e8;border-radius:13px;padding:15px 12px}.metric-pair span{display:block;font-size:.78rem}.metric-pair strong{display:block;font-size:1.25rem;margin-top:9px;overflow-wrap:anywhere}
+.schedule-advice{border:1px solid var(--line);border-radius:12px;background:#f5f6f0;padding:14px 15px;margin-bottom:14px;font-size:.92rem}.schedule-advice strong{display:block;margin-bottom:5px}.schedule-advice p{margin:0 0 8px}.schedule-advice p:last-child{margin-bottom:0}
+.event{grid-template-columns:minmax(106px,130px) minmax(0,1fr)}.event time{font-size:.85rem;white-space:normal}
+@media(max-width:620px){.planner-controls{column-gap:9px}.planner-controls .field label{font-size:.82rem;align-items:flex-start;flex-direction:column}.metric-pair strong{font-size:1.1rem}.event{grid-template-columns:110px 1fr;gap:9px}.event time{font-size:.81rem}}
+
+@media(max-width:850px){.hero{grid-template-columns:1fr .58fr}.hero-art{max-width:285px}.cards,.guide-grid,.record{grid-template-columns:1fr}.side-note{display:grid;grid-template-columns:1fr 1fr;gap:15px}.side-note h3{grid-column:1/-1}}
+@media(max-width:620px){.wrap{width:min(100% - 24px,1180px)}.nav{font-size:.8rem}.hero{display:block;padding:33px 0 40px}.hero-art{display:none}.hero h1{font-size:3.6rem}.card{padding:17px;border-radius:15px}.controls{gap:17px 10px}.controls .full{grid-column:1/-1}.timeline{grid-template-columns:1fr}.ingredients{grid-template-columns:1fr}.section{padding-top:26px}.qa{grid-template-columns:1fr}.test-grid{grid-template-columns:repeat(3,1fr)}.side-note{display:block}.step-title{font-size:1.65rem}.btn{font-size:.85rem}.actions{gap:7px}}
+@media print{body{background:#fff;font-size:12px}.top,.actions,.controls,.steps-indicators,.step-controls,.check,.footer,.no-print{display:none!important}.wrap{width:100%}.section{padding:6px 0}.cards,.timeline,.record{grid-template-columns:1fr 1fr;gap:10px}.card{border:1px solid #ccc;box-shadow:none;break-inside:avoid;padding:11px}.print-only{display:block}.guide-grid{display:block}.step-body{min-height:0}.side-note{display:none}}
+
+/* V3: app-style navigation, presets, accessible mobile controls */
+.app-tabs{display:flex;position:sticky;top:0;z-index:20;padding:9px;gap:7px;background:#eaf0e4ee;backdrop-filter:blur(18px);border:1px solid #d9e2d5;border-radius:16px;max-width:510px;margin:-23px auto 12px;box-shadow:0 8px 22px #1b362418}
+.app-tab{background:transparent;color:#415247;border:0;border-radius:11px;font-weight:800;flex:1;min-height:48px;display:flex;gap:7px;justify-content:center;align-items:center}.app-tab.active{background:var(--dark);color:white;box-shadow:0 5px 12px #0002}.tab-ico{font-size:1rem}
+.status-strip{display:flex;justify-content:space-between;gap:10px;padding:13px 7px 0;color:var(--muted);font-size:.8rem}.status-strip b{color:var(--pine);text-align:right}
+[data-view][hidden]{display:none!important}.preset-wrap{margin-bottom:22px}.presets{display:flex;gap:7px;flex-wrap:wrap}.preset{min-height:44px;padding:10px 12px;border:1px solid #ced9cb;border-radius:11px;background:#f6f8f1;color:var(--ink);font-weight:750}.preset.active{background:var(--dark);color:white;border-color:var(--dark)}
+.field input[type=number]{min-height:46px;background:#f8f8f2;color:var(--ink);padding:10px;width:100%;border:1px solid #cfd8ca;border-radius:9px}.field input:focus-visible{outline:3px solid #ca9b5b;outline-offset:2px}
+.bake-hero{background:var(--dark);color:white;padding:22px 25px;border-radius:19px;display:flex;justify-content:space-between;gap:20px;align-items:center;margin:10px 0 16px}.bake-hero h3{font:normal 2rem/1.05 Georgia,serif;margin:10px 0}.bake-hero p{color:#e0e8df;margin:0}.bake-hero .btn{color:var(--dark);background:#cee5a6;border:0;flex-shrink:0}
+.ready-box{background:#edf3e6;border-left:4px solid #508864;border-radius:11px;padding:12px 15px;margin-top:15px}.ready-box p{margin:5px 0 0;color:#405e4b;font-size:.91rem}.step-controls>.btn{min-height:54px;padding:14px 19px}
+.coach-result{font-size:.94rem;line-height:1.6}.coach-result h3{font-size:1.16rem;margin:0 0 10px}.coach-result ol{padding-left:22px}.coach-result li{margin:7px 0}.coach-result .notice{background:#f1f4e9;padding:12px;border-radius:10px}
+.history-actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center}.history-list{display:grid;gap:10px;margin-top:19px}.history-card{border:1px solid #e1e7da;border-radius:13px;padding:15px;display:flex;gap:10px;justify-content:space-between;align-items:center}.history-card b{font-size:1rem}.history-card p{font-size:.85rem;color:var(--muted);margin:5px 0 0}.history-buttons{display:flex;gap:6px}.history-buttons button{border:1px solid #d1dbce;border-radius:9px;background:#f9faf6;padding:9px 10px;font-weight:800;min-height:42px}.file-btn{display:inline-flex;align-items:center;cursor:pointer}
+#fridgeDelayField[hidden]{display:none!important}
+@media(max-width:620px){.app-tabs{margin:-10px auto 9px;border-radius:13px}.status-strip{flex-direction:column;gap:1px}.status-strip b{text-align:left}.bake-hero{display:block;padding:19px}.bake-hero .btn{margin-top:15px}.presets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.preset{padding:9px 5px;font-size:.75rem}.history-card{display:block}.history-buttons{margin-top:10px}.step-controls{display:grid;grid-template-columns:1fr 1.25fr}.step-controls>.btn{min-height:58px}.top{padding-bottom:6px}}
+@media print{.app-tabs,.status-strip,.presets,.bake-hero,.history-actions{display:none!important}[data-view][hidden]{display:block!important}}
+
+</style>
+</head>
+<body>
+<header class="top">
+<div class="wrap">
+<div class="nav"><div class="mark">🥖 THE PITA LAB <span style="opacity:.6">/ 3.0 · baking coach</span></div><a href="index.html">← Your other pita recipes</a></div>
+<div class="hero">
+<div>
+<div class="eyebrow">Plan it · Bake it · Perfect it</div>
+<h1>The perfect<br>pita pocket.</h1>
+<p>A personal pita-baking coach for your <b>Ooni Karu 2 Pro</b>. Build a batch, plan any date, follow one step at a time, and learn what makes every pocket puff.</p>
+<div class="pill-row"><span class="pill" id="planRange">Plan any day</span><span class="pill">Wood or gas</span><span class="pill">KitchenAid or hand</span></div>
+<div class="actions"><button class="btn" id="heroStart" type="button">Start planning ↓</button><button class="btn ghost" id="copyTop">Copy recipe</button></div>
+</div>
+<svg class="hero-art" role="img" aria-label="Illustration of a puffed pita bread" viewBox="0 0 460 390" xmlns="http://www.w3.org/2000/svg"><ellipse cx="235" cy="345" rx="191" ry="29" fill="#07150d" opacity=".35"/><ellipse cx="223" cy="245" rx="194" ry="112" fill="#d19a54" transform="rotate(-9 223 245)"/><ellipse cx="237" cy="231" rx="185" ry="109" fill="#edc78a" transform="rotate(-9 237 231)"/><path d="M69 217C87 147 197 112 298 140c70 19 120 61 122 108" fill="none" stroke="#ffebbc" stroke-width="7" opacity=".7"/><ellipse cx="150" cy="201" rx="20" ry="11" transform="rotate(-24 150 201)" fill="#b97843" opacity=".68"/><ellipse cx="248" cy="176" rx="37" ry="15" transform="rotate(16 248 176)" fill="#b97843" opacity=".55"/><ellipse cx="333" cy="215" rx="15" ry="8" transform="rotate(-17 333 215)" fill="#b97843" opacity=".65"/><ellipse cx="231" cy="257" rx="43" ry="12" transform="rotate(9 231 257)" fill="#c98a50" opacity=".46"/><ellipse cx="118" cy="258" rx="18" ry="9" fill="#b97843" opacity=".55"/><g fill="#7f4c30" opacity=".7"><circle cx="122" cy="219" r="4"/><circle cx="293" cy="274" r="5"/><circle cx="322" cy="175" r="3"/><circle cx="196" cy="143" r="3"/><circle cx="366" cy="247" r="3"/></g><path d="M76 257c35 83 249 130 340 11" stroke="#af7741" stroke-width="5" fill="none" opacity=".4"/></svg>
+</div>
+</div>
+</header>
+<main class="wrap">
+<nav class="app-tabs" role="tablist" aria-label="Pita Lab views">
+<button class="app-tab active" role="tab" aria-selected="true" data-view-btn="plan" type="button"><span class="tab-ico">📅</span><span>Plan</span></button>
+<button class="app-tab" role="tab" aria-selected="false" data-view-btn="bake" type="button"><span class="tab-ico">🥖</span><span>Bake</span></button>
+<button class="app-tab" role="tab" aria-selected="false" data-view-btn="improve" type="button"><span class="tab-ico">📈</span><span>Improve</span></button>
+</nav>
+<div class="status-strip" aria-live="polite"><span id="activeBatchLabel">Your next pita batch</span><b id="activeBatchSummary">16 pitas · 65% hydration</b></div>
+<section class="section" data-view="plan" id="recipe"><div class="section-title"><h2>01 · Make it yours</h2><span class="day-badge">Saves automatically on this device</span></div>
+<div class="cards">
+<div class="card">
+<p class="overline">Batch settings</p>
+<div class="controls">
+<div class="field"><label for="pieces">How many pitas? <output id="piecesOut">16</output></label><input id="pieces" type="number" inputmode="numeric" min="1" max="60" step="1" value="16"></div>
+<div class="field"><label for="ballWeight">Ball weight</label><select id="ballWeight"><option value="45">45 g · mini</option><option value="60">60 g · small</option><option value="70" selected>70 g · medium</option><option value="95">95 g · large</option></select></div>
+<div class="field"><label for="hydration">Hydration <output id="hydrationOut">65%</output></label><input id="hydration" type="range" min="62" max="70" step="1" value="65"></div>
+<div class="field"><label for="wheat">Whole wheat <output id="wheatOut">25%</output></label><input id="wheat" type="range" min="0" max="40" step="5" value="25"></div>
+<div class="field full"><label for="yeastPercent">Instant yeast <output id="yeastOut">0.30%</output></label><input id="yeastPercent" type="range" min="0.05" max="1.00" step="0.05" value="0.30"><p class="hint">Manual experiment setting. The original 0.30% is only an overnight baseline; there is no universally correct yeast percentage for every schedule.</p></div>
+<div class="field full"><label>Mixing method</label><div class="seg" role="group" aria-label="Mixing method"><button type="button" data-group="mixing" data-value="mixer">KitchenAid</button><button type="button" data-group="mixing" data-value="hand">By hand</button></div></div>
+<div class="field full"><label>Fuel for your Ooni</label><div class="seg" role="group" aria-label="Oven fuel"><button type="button" data-group="fuel" data-value="wood">🪵 Wood</button><button type="button" data-group="fuel" data-value="gas">🔥 Gas</button></div></div>
+<div class="field full"><label>When to shape the dough balls?</label><div class="seg" role="group" aria-label="Balling schedule"><button type="button" data-group="balling" data-value="bakeDay">On baking day</button><button type="button" data-group="balling" data-value="prepDay">Before refrigeration</button></div><p class="hint">Choose bulk refrigeration with shaping on baking day, or refrigerate pre-shaped balls.</p></div>
+</div></div>
+<div class="card">
+<p class="overline">Live ingredient scale</p>
+<div id="ingredientList" class="ingredients" aria-live="polite"></div>
+<div class="total"><div><div class="muted">Total dough</div><strong id="total">1.12 kg</strong></div><div style="text-align:right"><div class="muted">Your batch</div><b id="summary">16 × 70 g</b></div></div>
+<p class="hint" id="formulaHint">Baker's percentages: 2% salt, 2% olive oil, 1% honey and adjustable instant yeast. Quantities update inside every step. Keep some extra dusting flour aside.</p>
+<div class="actions"><button class="btn" id="copyRecipe">📋 Copy recipe</button><button class="btn ghost" id="saveBatch" type="button">💾 Save batch</button><button class="btn ghost" onclick="window.print()">Print / PDF</button></div>
+</div></div></section>
+<section class="section" data-view="plan" id="planner"><div class="section-title"><h2>02 · Choose your dates &amp; times</h2><span class="hint">No fixed weekends or fixed baking hours</span></div>
+<div class="cards">
+<div class="card">
+<p class="overline">Your personal baking schedule</p>
+<div class="preset-wrap">
+<p class="hint" style="margin:0 0 10px">Choose a planning mode. You can change every time afterward.</p>
+<div class="presets" role="group" aria-label="Fermentation plan"><button type="button" data-preset="overnight" class="preset active">🌙 Overnight</button><button type="button" data-preset="sameDay" class="preset">☀️ Same day</button><button type="button" data-preset="longCold" class="preset">❄️ Extended cold</button></div>
+</div>
+<div class="controls planner-controls">
+<div class="field"><label for="mixDate">Make dough · date</label><input id="mixDate" type="date" required></div>
+<div class="field"><label for="mixTime">Make dough · time</label><input id="mixTime" type="time" step="300" required></div>
+<div class="field"><label for="bakeDate">Bake pitas · date</label><input id="bakeDate" type="date" required></div>
+<div class="field"><label for="bakeTime">Bake pitas · time</label><input id="bakeTime" type="time" step="300" required></div>
+<div class="field full"><label for="proofMinutes">Room-temperature proof / warm-up <output id="proofOut">3 hours</output></label><input id="proofMinutes" type="range" min="30" max="360" step="15" value="180"><p class="hint">Counted backwards from baking. With bulk dough, shape at this time; with pre-shaped dough, remove from fridge.</p></div>
+<div class="field full" id="fridgeDelayField"><label for="fridgeDelay"><span id="fridgeDelayLabel">From mixing to fridge</span> <output id="fridgeOut">1 h 30 min</output></label><input id="fridgeDelay" type="range" min="60" max="180" step="15" value="90"></div>
+<div class="field full"><label for="preheatMinutes">Oven preheat <output id="preheatOut">45 min</output></label><input id="preheatMinutes" type="range" min="30" max="120" step="15" value="45"></div>
+</div>
+<div class="actions"><button class="btn ghost" id="todayTomorrow" type="button">↻ Today → tomorrow</button><button class="btn" id="toBake" type="button">Go to Bake Mode →</button></div>
+</div>
+<div class="card">
+<p class="overline">Live schedule summary</p>
+<div class="metric-pair"><div><span class="muted" id="fridgeMetricLabel">Planned refrigerator time</span><strong id="fridgeDuration">—</strong></div><div><span class="muted">Room-temperature proof</span><strong id="proofDuration">—</strong></div></div>
+<div id="scheduleAdvice" class="schedule-advice" role="status" aria-live="polite"></div>
+<p class="hint">Dates and times are interpreted in the device’s local time zone. They update the recipe, instructions, and copied plan automatically.</p>
+<p class="hint">Planner estimates assume about 20–22°C room temperature and a fridge around 4°C. Yeast, flour, actual dough temperature and readiness matter; presets are starting points, not guaranteed results.</p>
+<div class="actions"><button class="btn ghost" id="downloadCalendar" type="button">📅 Export calendar (.ics)</button></div>
+</div>
+</div>
+</section>
+<section class="section" data-view="plan" id="timeline"><div class="section-title"><h2>03 · Your baking timeline</h2><span class="hint">All dates and times follow your choices above</span></div>
+<div class="timeline">
+<div class="card"><span class="day-badge" id="prepBadge">PREP DAY</span><h3 style="margin-top:14px">Make + refrigerate</h3><div class="event"><time id="mixTimeDisplay">—</time><div><b>Mix and rest</b><p>Combine ingredients, then rest 30 minutes.</p></div></div><div class="event"><time id="foldTimeDisplay">—</time><div><b>Develop the dough</b><p>Gentle fold, then allow early fermentation.</p></div></div><div class="event"><time id="chillTimeDisplay">—</time><div><b id="chillTitle">Into the fridge</b><p id="fridayMethod"></p></div></div></div>
+<div class="card"><span class="day-badge" id="bakeBadge">BAKE DAY</span><h3 style="margin-top:14px">Proof + bake</h3><div class="event"><time id="shapeTime">—</time><div><b id="shapeTitle">Shape the balls</b><p id="shapeBody"></p></div></div><div class="event"><time id="fireTime">—</time><div><b id="fireTitle">Preheat the oven</b><p>Preheat to a stable stone temperature of 330–350°C.</p></div></div><div class="event"><time id="cookTime">—</time><div><b>Bake the first pita</b><p>Use a smooth, even disk; keep away from the strongest flame.</p></div></div></div></div>
+<p class="hint">Timing assumes a 4°C fridge and a 20–22°C kitchen. Dough readiness matters more than a clock; adjust proofing when necessary.</p>
+</section>
+<section class="section" data-view="bake" id="guide"><div class="section-title"><h2>04 · Follow along, one step at a time</h2><span class="progress-count" id="doneCount">0 / 8 complete</span></div>
+<div class="bake-hero"><div><span class="eyebrow">Hands-on cooking mode</span><h3>One step at a time.</h3><p>Ingredients and timestamps stay inside each step. Keep your phone nearby, check dough readiness, then advance.</p></div><button type="button" class="btn ghost" id="backToPlan">← Edit plan</button></div>
+<div class="guide-grid"><div class="card">
+<div class="step-head"><span class="day-badge" id="stepDay">PREP DAY</span><span class="hint" id="stepNum">STEP 1 OF 8</span></div>
+<div class="steps-indicators" id="stepIndicators" aria-label="Choose recipe step"></div>
+<h3 class="step-title" id="stepTitle">Weigh and combine</h3><div class="step-body" id="stepBody"></div>
+<div class="ready-box"><strong>Before moving on</strong><p id="stepReady">Check dough appearance and texture.</p></div>
+<label class="check"><input type="checkbox" id="stepDone"> I finished this step</label>
+<div class="step-controls"><button class="btn ghost" id="prevStep">← Previous</button><button class="btn" id="nextStep">Next step →</button></div>
+</div><aside class="side-note"><h3>The secrets to full pockets</h3><div class="highlight">330–350°C</div><p>Target the stone, not just the oven air. Check with an infrared thermometer.</p><ol><li>Roll each disk to even thickness, including the rim.</li><li>Keep dough covered. A dry skin or a pinhole leaks steam.</li><li>Let gluten relax before rolling; avoid forcing the shape.</li><li>Wait for a steady floor temperature between batches.</li><li>Cover baked pita promptly to keep it soft.</li></ol></aside></div>
+</section>
+<section class="section" data-view="improve" id="diagnosis"><div class="section-title"><h2>Diagnose your pita</h2></div><div class="cards"><div class="card"><p class="overline">What happened?</p><div class="field"><label for="symptom">Choose the closest observation</label><select id="symptom"><option value="flat">No puff — stayed flat</option><option value="partial">Small bubbles or partial pocket</option><option value="brown">Bottom browns too fast</option><option value="collapse">Puffed and collapsed after baking</option><option value="sticky">Dough tears or sticks while rolling</option><option value="success">Puffed beautifully!</option></select></div><div class="field" style="margin-top:18px"><label for="stoneObserved">Actual stone temperature (°C, optional)</label><input type="number" id="stoneObserved" inputmode="decimal" min="100" max="600" placeholder="e.g. 340"></div></div><div class="card"><p class="overline">Your coach suggests</p><div id="diagnosisAdvice" class="coach-result" aria-live="polite"></div><p class="hint">Several causes may look similar. Change one variable at a time, test one pita and record the result.</p></div></div></section>
+<section class="section" data-view="improve" id="tracker"><div class="section-title"><h2>Six-pita puff tracker</h2><span class="hint">Great for comparing future batches</span></div><div class="record"><div class="card"><p class="overline">Record first six bakes</p><div class="test-grid" id="testGrid"></div><div class="total"><div><b id="testRatio">0 / 0</b><div class="muted">Successful full puffs</div></div><button class="btn ghost" id="resetResults">Reset results</button></div></div><div class="card notes"><p class="overline">Batch notes · stored on this device</p><label for="notes" class="hint">Record actual stone temperature, wood/gas, proof time, texture, what worked and what didn't.</label><textarea id="notes" placeholder="E.g. 340°C stone, oak fire, first pita puffed in 45 s, 3–4 mm thickness..."></textarea><div class="actions"><button class="btn" id="exportNotes">Copy experiment log</button><button class="btn ghost" id="resetSteps">Reset step checklist</button></div></div></div></section>
+<section class="section" data-view="improve" id="history"><div class="section-title"><h2>Saved batches</h2><span class="hint">Stored in this browser</span></div>
+<div class="card"><div class="history-actions"><button class="btn" type="button" id="newBatch">＋ Save &amp; start new batch</button><button class="btn ghost" type="button" id="exportHistory">Download history backup</button><label class="btn ghost file-btn" for="importHistory">Import backup</label><input id="importHistory" type="file" accept="application/json,.json" hidden></div><p class="hint">Save batches to compare results. A new batch starts with the same recipe preferences and fresh dates, but clears the checklist and puff scores. Importing a backup adds saved batches.</p><div id="historyList" class="history-list" aria-live="polite"></div></div>
+</section>
+<section class="section" data-view="plan" id="planFooter"><div class="card"><h3 style="margin:0 0 6px">Using Pita Lab anywhere</h3><p style="margin:0">This is one self-contained HTML file for your GitHub Pages repository or offline viewing. Active settings and saved batches are stored in this browser only; they do not sync between devices. Use <b>Download history backup</b> when you want to keep or transfer them. Calendar export creates an importable file, not automatic notifications.</p></div></section>
+<footer class="footer"><div class="wrap" style="padding:0">Independent adaptation inspired by <a href="https://ca.ooni.com/blogs/recipes/ooni-pita" target="_blank" rel="noopener">Ooni's Fresh Homemade Pita Bread by Andrew Janjigian</a>. This version uses 65% hydration by default, a different flour/enrichment balance, and a Karu 2 Pro schedule. © Recipe lab for home use.</div></footer>
+</main><div class="toast" id="toast" role="status"></div>
+<script>
+(()=>{'use strict';
+const KEY='karu2pro-pita-lab-v3', HISTORY_KEY='karu2pro-pita-lab-v3-history', OLD_KEY='karu2pro-pita-lab-v2', LEGACY_KEY='karu2pro-saturday-pita-v1';
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const localISO=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const today=new Date(),tomorrow=new Date(today.getFullYear(),today.getMonth(),today.getDate()+1);
+const defaults={pieces:16,ballWeight:70,hydration:65,wheat:25,yeastPercent:0.30,mixing:'mixer',fuel:'gas',balling:'bakeDay',mode:'overnight',mixDate:localISO(today),mixTime:'18:30',bakeDate:localISO(tomorrow),bakeTime:'10:00',proofBakeDay:180,proofPrepDay:90,fridgeDelay:90,preheatGas:45,preheatWood:60,step:0,done:[],results:['','','','','',''],notes:'',view:'plan'};
+const clone=o=>JSON.parse(JSON.stringify(o));
+const checkDate=v=>typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v)?v:null;
+const checkTime=v=>typeof v==='string'&&/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(v)?v:null;
+const clamp=(v,min,max,fallback)=>Number.isFinite(Number(v))?Math.min(max,Math.max(min,Number(v))):fallback;
+function sanitize(raw){
+  const r=raw&&typeof raw==='object'&&!Array.isArray(raw)?raw:{},z={...clone(defaults)};
+  for(const k of ['pieces','hydration','wheat','yeastPercent','proofBakeDay','proofPrepDay','fridgeDelay','preheatGas','preheatWood','step'])if(r[k]!==undefined){const bounds={pieces:[1,60],hydration:[60,75],wheat:[0,50],yeastPercent:[.05,1],proofBakeDay:[30,360],proofPrepDay:[30,360],fridgeDelay:[60,180],preheatGas:[30,120],preheatWood:[30,120],step:[0,7]}; z[k]=clamp(r[k],...bounds[k],z[k]);}
+  z.pieces=Math.round(z.pieces);z.step=Math.round(z.step);
+  z.ballWeight=[45,60,70,95].includes(Number(r.ballWeight))?Number(r.ballWeight):70;
+  for(const k of ['mixDate','bakeDate'])z[k]=checkDate(r[k])||z[k];
+  for(const k of ['mixTime','bakeTime'])z[k]=checkTime(r[k])||z[k];
+  z.mixing=['mixer','hand'].includes(r.mixing)?r.mixing:z.mixing;
+  z.fuel=['gas','wood'].includes(r.fuel)?r.fuel:z.fuel;
+  z.balling=['bakeDay','prepDay'].includes(r.balling)?r.balling:r.balling==='friday'?'prepDay':'bakeDay';
+  z.mode=['overnight','sameDay','longCold'].includes(r.mode)?r.mode:z.mode;
+  z.view=['plan','bake','improve'].includes(r.view)?r.view:'plan';
+  z.done=Array.isArray(r.done)?[...new Set(r.done.filter(x=>Number.isInteger(x)&&x>=0&&x<=7))]:[];
+  z.results=Array.isArray(r.results)&&r.results.length===6?r.results.map(x=>['puff','flat',''].includes(x)?x:''):[...defaults.results];
+  z.notes=typeof r.notes==='string'?r.notes.slice(0,20000):'';
+  return z;
+}
+let state=clone(defaults),history=[];
+try{const stored=localStorage.getItem(KEY),prior=localStorage.getItem(OLD_KEY)||localStorage.getItem(LEGACY_KEY);if(stored||prior){const raw=JSON.parse(stored||prior);state=sanitize(raw);if(!stored&&prior){state.mixDate=defaults.mixDate;state.bakeDate=defaults.bakeDate;state.mixTime=defaults.mixTime;state.bakeTime=defaults.bakeTime;}}}catch(e){state=clone(defaults)}
+try{let h=JSON.parse(localStorage.getItem(HISTORY_KEY)||'[]');if(Array.isArray(h))history=h.filter(x=>x&&typeof x==='object'&&x.data).slice(0,100).map(x=>({id:String(x.id||Date.now()),savedAt:String(x.savedAt||new Date().toISOString()),data:sanitize(x.data)}));}catch(e){history=[]}
+const num=n=>Number(n).toFixed(1);
+const add=(d,minutes)=>new Date(d.getTime()+minutes*60000);
+const parseLocal=(d,t)=>new Date(`${d}T${t}:00`);
+const stamp=d=>new Intl.DateTimeFormat('en-CA',{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(d);
+const dateLabel=d=>new Intl.DateTimeFormat('en-CA',{weekday:'long',month:'short',day:'numeric',year:'numeric'}).format(d);
+const dateShort=d=>new Intl.DateTimeFormat('en-CA',{weekday:'short',month:'short',day:'numeric'}).format(d);
+const duration=m=>{if(!Number.isFinite(m)||m<0)return '—';let n=Math.round(m),h=Math.floor(n/60),mins=n%60;return h?`${h} h${mins?' '+mins+' min':''}`:`${mins} min`};
+const isBakingDayBalling=()=>state.balling==='bakeDay'||state.mode==='sameDay';
+const proofMins=()=>Number(isBakingDayBalling()?state.proofBakeDay:state.proofPrepDay);
+const preheatMins=()=>Number(state.fuel==='wood'?state.preheatWood:state.preheatGas);
+function plan(){const mix=parseLocal(state.mixDate,state.mixTime),bake=parseLocal(state.bakeDate,state.bakeTime);const fold=add(mix,40),chill=add(mix,Number(state.fridgeDelay)),proof=add(bake,-proofMins()),heat=add(bake,-preheatMins()),roll=add(bake,-15);return {mix,bake,fold,chill,proof,heat,roll,fridgeMinutes:state.mode==='sameDay'?0:(proof-chill)/60000,bulkMinutes:(proof-mix)/60000};}
+function calc(){const weight=state.pieces*state.ballWeight;const f=weight/(1+state.hydration/100+.02+.02+.01+state.yeastPercent/100);const ww=Math.round(f*state.wheat/100),white=Math.round(f-ww);return {weight,white,ww,water:Math.round(f*state.hydration/100),salt:num(f*.02),oil:num(f*.02),honey:num(f*.01),yeast:Math.max(.01,f*state.yeastPercent/100).toFixed(2),thickness:state.ballWeight<=45?'2.5–3.5':state.ballWeight<=70?'3–4':'4–5',diameter:state.ballWeight<=45?'13–14':state.ballWeight<=60?'15–16':state.ballWeight<=70?'16–18':'19–20'};}
+function safe(){try{localStorage.setItem(KEY,JSON.stringify(state));localStorage.setItem(HISTORY_KEY,JSON.stringify(history));}catch(e){toast('Browser storage unavailable — export a backup')}}
+function set(name,value){state[name]=value;safe();render();}
+function switchView(view,scroll=true){state.view=view;safe();document.querySelectorAll('[data-view]').forEach(el=>el.hidden=el.dataset.view!==view);document.querySelectorAll('[data-view-btn]').forEach(b=>{const on=b.dataset.viewBtn===view;b.classList.toggle('active',on);b.setAttribute('aria-selected',String(on));});if(scroll)document.querySelector('.app-tabs').scrollIntoView({behavior:'smooth',block:'start'});}
+function updateControls(){
+  for(const id of ['pieces','ballWeight','hydration','wheat','yeastPercent','mixDate','mixTime','bakeDate','bakeTime','fridgeDelay'])$(id).value=state[id];
+  $('proofMinutes').value=proofMins();$('preheatMinutes').value=preheatMins();
+  $('piecesOut').textContent=state.pieces;$('hydrationOut').textContent=state.hydration+'%';$('wheatOut').textContent=state.wheat+'%';$('yeastOut').textContent=Number(state.yeastPercent).toFixed(2)+'%';
+  $('proofOut').textContent=duration(proofMins());$('fridgeOut').textContent=duration(state.fridgeDelay);$('preheatOut').textContent=duration(preheatMins());
+  $('fridgeDelayField').hidden=state.mode==='sameDay';const preball=document.querySelector('[data-group=\"balling\"][data-value=\"prepDay\"]');preball.disabled=state.mode==='sameDay';preball.title=state.mode==='sameDay'?'Same-day dough is shaped on the baking day':'';
+  document.querySelectorAll('[data-group]').forEach(b=>{const a=b.dataset.value===state[b.dataset.group];b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});
+  document.querySelectorAll('[data-preset]').forEach(b=>{const a=b.dataset.preset===state.mode;b.classList.toggle('active',a);b.setAttribute('aria-pressed',String(a));});
+  $('activeBatchLabel').textContent=`${dateShort(plan().bake)} · ${stamp(plan().bake).split(', ').pop()} · ${state.mode==='sameDay'?'Same day':state.mode==='longCold'?'Extended cold':'Overnight'}`;
+  $('activeBatchSummary').textContent=`${state.pieces} × ${state.ballWeight} g · ${state.hydration}% water`;
+}
+function ingredients(c){const list=[['White flour',c.white+' g'],['Whole wheat',c.ww+' g'],['Water',c.water+' g'],['Fine salt',c.salt+' g'],['Olive oil',c.oil+' g'],['Honey',c.honey+' g'],['Instant yeast',c.yeast+' g']];$('ingredientList').innerHTML=list.map(([x,v])=>`<div class="ing"><span>${x}</span><span class="amt">${v}</span></div>`).join('');$('total').textContent=(c.weight/1000).toFixed(2)+' kg';$('summary').textContent=`${state.pieces} × ${state.ballWeight} g`;}
+function advice(p){
+  let msgs=[],bad=false;
+  if(!Number.isFinite(p.bake.getTime())||!Number.isFinite(p.mix.getTime()))return {label:'Invalid date/time',bad:true,msgs:['Select valid dates and times.']};
+  if(p.bake<=p.mix){bad=true;msgs.push('Baking needs to be scheduled after dough preparation.');}
+  if(p.proof<=p.chill){bad=true;msgs.push(state.mode==='sameDay'?'Shaping/proofing starts before the initial dough development is finished. Make the dough earlier or bake later.':'Shaping/proofing starts before the dough enters the refrigerator. Prepare earlier or bake later.');}
+  if(state.mode==='sameDay'){
+    if(p.bulkMinutes<100)msgs.push('Very short bulk fermentation. Same-day dough may need more time before shaping.');
+    if(p.bulkMinutes>360)msgs.push('Long warm bulk fermentation can overproof. Watch the dough closely and adjust.');
+    if(state.yeastPercent<.2)msgs.push('Low yeast for a short warm timetable; the dough may not become ready in time.');
+    msgs.push('No refrigeration is planned. Same-day yeast amounts are experimental and depend on dough temperature.');
+  }else{
+    if(p.fridgeMinutes>=0&&p.fridgeMinutes<480)msgs.push('Less than 8 hours cold: this is shorter than the original overnight approach.');
+    if(p.fridgeMinutes>1440)msgs.push('More than 24 hours cold: watch for overfermentation; the baseline yeast may be too high.');
+    if(p.fridgeMinutes>4320)msgs.push('More than 72 hours cold: significant overfermentation and dough quality risk.');
+    if(state.mode==='longCold'&&state.yeastPercent>=.3)msgs.push('Extended cold fermentation with the original 0.30% yeast may overferment.');
+  }
+  if(proofMins()>240)msgs.push('Long proof selected: check dough relaxation and puffiness before rolling.');
+  if(state.pieces>30)msgs.push('Large batch: divide mixing into smaller loads for your mixer and maintain stone temperature between pitas.');
+  return {label:bad?'Fix your schedule':msgs.length>1?'Check these planning notes':'Suggested plan',bad,msgs:msgs.length?msgs:['Times are a starting point. Bake when the dough is relaxed, slightly puffy and easy to roll.']};
+}
+function schedule(){
+ const p=plan(),a=advice(p),same=state.mode==='sameDay';
+ $('planRange').textContent=`${dateShort(p.mix)} → ${dateShort(p.bake)}`;
+ $('prepBadge').textContent=dateLabel(p.mix).toUpperCase();$('bakeBadge').textContent=dateLabel(p.bake).toUpperCase();
+ $('mixTimeDisplay').textContent=stamp(p.mix);$('foldTimeDisplay').textContent=stamp(p.fold);$('chillTimeDisplay').textContent=stamp(p.chill);$('shapeTime').textContent=stamp(p.proof);$('fireTime').textContent=stamp(p.heat);$('cookTime').textContent=stamp(p.bake);
+ $('chillTitle').textContent=same?'Continue bulk fermentation':'Into the fridge';
+ $('fridayMethod').textContent=same?'Keep dough covered at room temperature; no refrigeration for this preset.':isBakingDayBalling()?'Chill the dough in bulk in a covered lightly oiled container.':'Shape balls, seal seams, lightly oil, cover tightly and chill.';
+ $('shapeTitle').textContent=same?'Shape and proof':isBakingDayBalling()?'Shape balls and proof':'Warm the refrigerated balls';
+ $('shapeBody').textContent=same?`Divide into ${state.pieces} × ${state.ballWeight} g; proof covered about ${duration(proofMins())} or until ready.`:isBakingDayBalling()?`Divide into ${state.pieces} × ${state.ballWeight} g; proof covered about ${duration(proofMins())}.`:`Remove pre-shaped balls and relax, covered, about ${duration(proofMins())}.`;
+ $('fireTitle').textContent=state.fuel==='wood'?'Light the wood fire':'Preheat with gas';
+ $('fridgeMetricLabel').textContent=same?'Refrigeration':'Planned refrigerator time';
+ $('fridgeDuration').textContent=same?'None':p.fridgeMinutes>=0?duration(p.fridgeMinutes):'Invalid order';
+ $('proofDuration').textContent=duration(proofMins());
+ $('scheduleAdvice').innerHTML=`<strong>${a.label}</strong>${a.msgs.map(x=>`<p>${x}</p>`).join('')}`;
+ $('scheduleAdvice').style.borderColor=a.bad?'#d68d69':'#dce4d7';
+}
+const titles=['Weigh and combine','Mix and rest','Develop the dough','Cold fermentation','Proof and relax','Preheat the Karu','Roll an even disk','Bake and keep soft'];
+function bodyFor(i,c,p){
+  const bullets=(...arr)=>'<ol>'+arr.map(x=>'<li>'+x+'</li>').join('')+'</ol>';
+  switch(i){
+    case 0:return `<p><b>${stamp(p.mix)}.</b> Weigh the dry ingredients and mix the honey with cool water (about 18–22°C).</p><div class="step-qty"><span>White flour</span><span>${c.white} g</span><span>Whole wheat</span><span>${c.ww} g</span><span>Instant yeast</span><span>${c.yeast} g</span><span>Water</span><span>${c.water} g</span><span>Honey</span><span>${c.honey} g</span></div><p class="hint">Do not sift away the whole wheat bran. Use a precise scale for yeast.</p>`;
+    case 1:return `<p><b>${state.mixing==='mixer'?'KitchenAid dough hook':'Manual mixing'}</b></p>${state.mixing==='mixer'?bullets('Add water and honey to the flours, mixing on speed 1 until incorporated (about 2–3 minutes).',`Add <b>${c.salt} g salt</b> and <b>${c.oil} g olive oil</b>.`,'Mix at speed 2 for about 3–5 minutes, until the dough is cohesive. Stop if the mixer strains.','Cover and rest <b>30 minutes</b>.'):bullets('Pour the water and honey mixture into the dry ingredients and stir until no flour remains.',`Add <b>${c.salt} g salt</b> and <b>${c.oil} g olive oil</b>.`,'Knead by hand about 4–5 minutes until uniform.','Cover and rest 30 minutes.')}<p class="hint">The dough should be pliable and slightly tacky, not dry. Avoid adding more flour unless necessary.</p>`;
+    case 2:return `<p><b>Around ${stamp(p.fold)}.</b> With damp hands, stretch and fold the dough gently over itself 4 times. Repeat after 15 minutes if weak.</p><p>Cover and allow early fermentation until around <b>${stamp(p.chill)}</b>. Look for smoother dough and a slight puff — <b>do not wait for full doubling</b>.</p>`;
+    case 3:if(state.mode==='sameDay')return `<p><b>${stamp(p.chill)}.</b> Keep the bulk dough covered at about 20–22°C until the scheduled shaping time of <b>${stamp(p.proof)}</b>. This is a <b>room-temperature fermentation</b>, with no refrigerator step.</p><p>Watch the dough, not the clock: it should become smoother, aerated and somewhat expanded. If rising too quickly, shorten the proof rather than waiting for doubling.</p>`;
+      return isBakingDayBalling()?`<p><b>${stamp(p.chill)}.</b> Transfer the entire dough into a lightly oiled container with headroom. Cover airtight and refrigerate around <b>4°C</b>.</p><p>On your scheduled baking day, shape cool dough into balls. Protect it from drying out.</p>`:`<p><b>${stamp(p.chill)}.</b> Divide dough into <b>${state.pieces} × ${state.ballWeight} g</b>. Shape smooth round balls without ripping the skin. Pinch seams closed.</p><p>Oil the dough tray lightly, space balls apart, cover tightly and refrigerate at <b>4°C</b>.</p>`;
+    case 4:if(state.mode==='sameDay')return `<p><b>${stamp(p.proof)}.</b> Divide into <b>${state.pieces} × ${state.ballWeight} g</b>, round without tearing, and keep covered at 20–22°C for about <b>${duration(proofMins())}</b> until relaxed, easy to roll and slightly puffy.</p><p>For same-day dough, active yeast and room temperature can change this substantially. Adjust by observation.</p>`;
+      return isBakingDayBalling()?`<p><b>${stamp(p.proof)}.</b> Divide the cool dough into <b>${state.pieces} portions of ${state.ballWeight} g</b>. Round carefully; keep seams underneath.</p><p>Cover lightly oiled balls and proof at 20–22°C for about <b>${duration(proofMins())}</b>, until relaxed and slightly puffy. Adjust for dough readiness.</p>`:`<p><b>${stamp(p.proof)}.</b> Take the shaped balls from the fridge. Keep covered, seam-side down, for approximately <b>${duration(proofMins())}</b> until pliable and easy to roll.</p><p>Do not repeatedly reshape, punch down or dry them with excessive bench flour.</p>`;
+    case 5:return `<p><b>${stamp(p.heat)}.</b> ${state.fuel==='wood'?'Start with dry, untreated, small maple or oak pieces in the proper Ooni solid-fuel tray. Keep a clean, steady flame and follow manufacturer instructions for chimney and ventilation.':'Use the compatible Karu 2 Pro gas burner, installed and operated according to the Ooni manual. Preheat outdoors and adjust flame as needed.'}</p><p>Check the <b>centre of the stone with an infrared thermometer</b>. Initial target <b>330–350°C (626–662°F)</b>. Heat should be stable, not changing rapidly.</p><p class="hint">With wood, bake away from the strongest flame. Do not bake during heavy smoke or a fresh wood flare-up.</p>`;
+    case 6:return `<p><b>Start rolling around ${stamp(p.roll)}; one or two at a time.</b> Dust a dough ball lightly, pat from the centre outward, then roll, turning between passes. Aim for:</p><div class="step-qty"><span>Even thickness</span><span>${c.thickness} mm</span><span>Approximate diameter</span><span>${c.diameter} cm</span><span>Dough per pita</span><span>${state.ballWeight} g</span></div><p>Do <b>not</b> leave a thicker rim as for pizza. Check for pinholes and remove excess flour. Move to a peel without tearing.</p>`;
+    case 7:return `<p><b>From ${stamp(p.bake)} onward.</b></p>${bullets('Launch the rolled pita onto the hot stone away from the main flame.','Watch for small bubbles followed by a balloon-like puff. Do not poke or flatten it.','Rotate if an edge browns too quickly. Bake about 30 seconds–2 minutes until fully puffed and lightly golden.','Remove and place on a towel-lined rack; cover lightly to keep flexible.','Check stone temperature before each subsequent batch, especially with wood.')}<p><b>Consistency test:</b> Log the first six pitas below. If one fails, first check thickness and dry patches.</p>`;
+  }
+  return '';
+}
+
+const readyTips=[
+ 'All ingredients weighed; use a precision scale for small yeast amounts.',
+ 'Dough is combined, cohesive and slightly tacky, not stiff or dry.',
+ 'Surface feels smoother; only a slight rise is needed at this point.',
+ 'Container covered well; dough is not dry or excessively expanded.',
+ 'Dough balls are relaxed, pliable and slightly puffy, without a dry skin.',
+ 'Center stone reads roughly 330–350°C on an infrared thermometer; heat is stable.',
+ 'Disk is evenly thin, including rim, with no holes or tears.',
+ 'Pita ballooned or cooked through and is lightly golden; cover with a towel.'
+];
+function steps(c){const i=Number(state.step)||0,p=plan(),event=[p.mix,p.mix,p.fold,p.chill,p.proof,p.heat,p.roll,p.bake][i];$('stepTitle').textContent=titles[i];$('stepBody').innerHTML=bodyFor(i,c,p);$('stepNum').textContent=`STEP ${i+1} OF 8`;$('stepDay').textContent=stamp(event).toUpperCase();$('stepReady').textContent=readyTips[i];$('stepDone').checked=state.done.includes(i);$('doneCount').textContent=`${state.done.length} / 8 complete`;$('prevStep').disabled=i===0;$('nextStep').textContent=i===7?'Back to first ↺':'Next step →';$('stepIndicators').innerHTML=titles.map((s,j)=>`<button type="button" class="${i===j?'active':state.done.includes(j)?'done':''}" title="Step ${j+1}: ${s}" aria-label="Step ${j+1}: ${s}" data-step="${j}"></button>`).join('');document.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>set('step',Number(b.dataset.step)));}
+function tests(){const done=state.results.filter(Boolean),success=done.filter(x=>x==='puff').length;$('testRatio').textContent=`${success} / ${done.length}`;$('testGrid').innerHTML=state.results.map((r,i)=>`<div class="test"><small>PITA ${i+1}</small><select aria-label="Pita ${i+1} result" data-test="${i}"><option value="" ${r===''?'selected':''}>—</option><option value="puff" ${r==='puff'?'selected':''}>✓ Puff</option><option value="flat" ${r==='flat'?'selected':''}>✕ Flat</option></select></div>`).join('');document.querySelectorAll('[data-test]').forEach(el=>el.onchange=()=>{state.results[Number(el.dataset.test)]=el.value;safe();tests();});}
+function diagnosis(){const symptom=$('symptom').value,t=Number($('stoneObserved').value),hasTemp=$('stoneObserved').value.trim()!==''&&Number.isFinite(t);const recommendations={
+flat:['First check the whole disk for even thickness and a dry skin or small hole.','Confirm the center stone is stable around 330–350°C.','If the disk springs back when rolled, rest dough covered for 15–20 minutes and try another.'],
+partial:['Aim for a disk of consistent thickness, including around the edge.','Reduce excess bench flour and prevent skin drying.','Watch for little tears and check proof relaxation.'],
+brown:['Let the stone/radiant heat settle and reposition farther from the hottest flame.','Roll more evenly, and test a pita before changing the recipe.','Use an infrared thermometer again before the next launch.'],
+collapse:['A pita collapsing after ballooning is normal.','Remove when the loaf is lightly colored and set; cover with a clean towel to stay supple.'],
+sticky:['Lightly dust the worktop and peel, without adding lots of flour to the dough.','Let the covered dough rest if elastic and springing back.','If it tears, handle gently and check whether fermentation weakened the dough.'],
+success:['Record proof time, dough feel, stone temperature, disk thickness and bake duration.','Repeat those conditions next time, then adjust only one variable at a time.']};
+let labels={flat:'Not puffing',partial:'Only partially puffing',brown:'Browning before puffing',collapse:'Puff then collapse',sticky:'Hard to roll',success:'Excellent result'};
+let extra=hasTemp?(t<310?'Stone reading is below the 330–350°C starting target; preheat more and retest.':t>380?'Stone is above the initial target; allow it to settle and retry.':'Stone reading is near the intended starting range. Focus next on thickness, handling and proofing.'): 'Record an actual stone reading to narrow down the possibilities.';
+$('diagnosisAdvice').innerHTML=`<h3>${labels[symptom]}</h3><ol>${recommendations[symptom].map(x=>`<li>${x}</li>`).join('')}</ol><p class="notice">${extra}</p>`;}
+function renderHistory(){const root=$('historyList');root.replaceChildren();if(!history.length){let p=document.createElement('p');p.className='hint';p.textContent='No saved batches yet. Use “Save batch” after a bake to start your history.';root.append(p);return;}
+for(const [idx,entry] of history.entries()){
+ const d=entry.data,box=document.createElement('div'),main=document.createElement('div'),buttons=document.createElement('div'),b=document.createElement('b'),p=document.createElement('p');box.className='history-card';buttons.className='history-buttons';
+ b.textContent=`${d.bakeDate} · ${d.pieces} × ${d.ballWeight} g`;let n=d.results.filter(Boolean),pp=n.filter(x=>x==='puff').length;p.textContent=`${d.mode==='sameDay'?'Same day':d.mode==='longCold'?'Extended cold':'Overnight'} · ${pp}/${n.length} full puffs · ${d.fuel} · saved ${entry.savedAt.slice(0,10)}`;
+ main.append(b,p);let load=document.createElement('button');load.textContent='Load';load.type='button';load.setAttribute('aria-label','Load batch '+(idx+1));load.onclick=()=>{if(confirm('Load this batch? Current unsaved edits will be replaced.')){state=sanitize(d);$('notes').value=state.notes;safe();render();switchView('plan');toast('Batch loaded ✓')}};
+ let del=document.createElement('button');del.textContent='Delete';del.type='button';del.setAttribute('aria-label','Delete batch '+(idx+1));del.onclick=()=>{if(confirm('Delete this saved batch?')){history=history.filter(x=>x.id!==entry.id);safe();renderHistory();}};buttons.append(load,del);box.append(main,buttons);root.append(box);
+}}
+function render(){const c=calc();updateControls();ingredients(c);schedule();steps(c);tests();diagnosis();renderHistory();$('notes').value=state.notes;}
+function recipeText(){const c=calc(),p=plan(),a=advice(p),same=state.mode==='sameDay',bulk=isBakingDayBalling();return `PITA LAB 3.0 — Ooni Karu 2 Pro\nMode: ${state.mode}\nPreparation: ${stamp(p.mix)}\nBaking: ${stamp(p.bake)}\n${state.pieces} × ${state.ballWeight} g | ${state.hydration}% hydration | ${state.wheat}% whole wheat\nFuel: ${state.fuel} | Mixing: ${state.mixing} | Yeast: ${state.yeastPercent.toFixed(2)}%\n\nINGREDIENTS\nWhite flour ${c.white} g\nWhole wheat ${c.ww} g\nWater ${c.water} g\nSalt ${c.salt} g\nOlive oil ${c.oil} g\nHoney ${c.honey} g\nInstant yeast ${c.yeast} g\nTotal dough ${(c.weight/1000).toFixed(2)} kg\n\nPLAN\n${stamp(p.mix)} Combine and rest dough\n${stamp(p.fold)} Fold and develop gluten\n${stamp(p.chill)} ${same?'Continue covered warm bulk fermentation':bulk?'Refrigerate bulk dough':'Refrigerate shaped balls'}\n${stamp(p.proof)} ${same||bulk?'Divide, ball, proof':'Bring refrigerated balls to room temperature'}\n${stamp(p.heat)} Preheat oven (${state.fuel})\n${stamp(p.bake)} Bake at a stable 330–350°C center stone temperature\n${same?'No refrigeration':'Estimated cold time: '+duration(p.fridgeMinutes)}\n\nCOACHING NOTES\n${a.msgs.join('\n')}\n\nMETHOD\n1. Mix flour and yeast; mix honey into water.\n2. Incorporate using ${state.mixing==='mixer'?'KitchenAid with dough hook':'hands'}, add salt and oil; rest 30 minutes.\n3. Stretch and fold, then allow early fermentation.\n4. ${same?'Keep covered at room temperature.':'Chill covered around 4°C.'}\n5. Shape/proof covered until relaxed and slightly puffy.\n6. Verify the center stone is 330–350°C with infrared thermometer.\n7. Roll to ${c.thickness} mm, ${c.diameter} cm, even edges, no holes.\n8. Bake 30–120 seconds; cover cooked pita in a towel.\n\nAdapted independently from Ooni Fresh Homemade Pita Bread:\nhttps://ca.ooni.com/blogs/recipes/ooni-pita\n`.replaceAll('\\n','\n');}
+function experimentText(){const completed=state.results.filter(Boolean),p=completed.filter(x=>x==='puff').length;return recipeText()+`\nEXPERIMENT LOG\nPuffs: ${p}/${completed.length}\nFirst six: ${state.results.map((r,i)=>`${i+1}=${r||'not tested'}`).join(', ')}\nNotes: ${state.notes||'(none)'}`;}
+let toastTimer;function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2700);}
+async function copy(content){try{await navigator.clipboard.writeText(content);toast('Copied to clipboard ✓')}catch(e){const t=document.createElement('textarea');t.value=content;t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.select();try{document.execCommand('copy');toast('Copied to clipboard ✓')}catch(ex){toast('Copy unavailable — use Print / PDF')}t.remove();}}
+function applyPreset(mode){state.mode=mode;state.balling='bakeDay';if(mode==='sameDay'){state.proofBakeDay=120;state.yeastPercent=.55;}else if(mode==='longCold'){state.proofBakeDay=180;state.yeastPercent=.10;}else{state.proofBakeDay=180;state.yeastPercent=.30;}
+ let desired=parseLocal(state.bakeDate,state.bakeTime);if(!Number.isFinite(desired.getTime()))desired=add(new Date(),1440);
+ let prep=add(desired,mode==='sameDay'?-270:mode==='longCold'?-2400:-930);state.mixDate=localISO(prep);state.mixTime=`${pad(prep.getHours())}:${pad(prep.getMinutes())}`;safe();render();toast('Preset applied; review actual dough readiness');}
+function saveCurrent(){history.unshift({id:String(Date.now())+'-'+String(Math.random()).slice(2,6),savedAt:new Date().toISOString(),data:sanitize(state)});history=history.slice(0,100);safe();renderHistory();toast('Batch saved in this browser ✓');}
+function newBatch(){saveCurrent();let view=state.view;let td=new Date(),next=new Date(td.getFullYear(),td.getMonth(),td.getDate()+1);state={...clone(state),mixDate:localISO(td),mixTime:'18:30',bakeDate:localISO(next),bakeTime:'10:00',done:[],step:0,results:['','','','','',''],notes:'',view};$('notes').value='';applyPreset(state.mode);safe();render();switchView('plan');toast('New batch is ready ✓');}
+function downloadBlob(name,content,mime){const blob=new Blob([content],{type:mime}),link=document.createElement('a'),url=URL.createObjectURL(blob);link.href=url;link.download=name;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function backup(){downloadBlob('pita-lab-backup.json',JSON.stringify({app:'Pita Lab 3.0',exportedAt:new Date().toISOString(),active:state,history},null,2),'application/json;charset=utf-8');}
+function calendar(){const p=plan(),ok=advice(p);if(ok.bad){toast('Fix schedule before exporting calendar');return;}
+ const icsStamp=d=>`${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
+ const escape=s=>s.replaceAll('\\','\\\\').replaceAll(',','\\,').replaceAll(';','\\;').replaceAll('\n','\\n');
+ const evts=[[p.mix,'Mix pita dough',30],[p.chill,state.mode==='sameDay'?'Begin room-temperature bulk rest':'Refrigerate pita dough',15],[p.proof,'Shape / proof pita',20],[p.heat,'Preheat Ooni Karu 2 Pro',10],[p.bake,'Bake fresh pita',90]];
+ const dts=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');const uid=Date.now();
+ let ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Pita Lab//Baking Planner//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH'];
+ evts.forEach(([date,title,m],i)=>ics.push('BEGIN:VEVENT',`UID:${uid}-${i}@pita-lab`,`DTSTAMP:${dts}`,`DTSTART:${icsStamp(date)}`,`DTEND:${icsStamp(add(date,m))}`,`SUMMARY:${escape(title)}`,`DESCRIPTION:${escape('Pita Lab personal plan; estimates only. Check actual dough readiness.')}`,'BEGIN:VALARM','TRIGGER:-PT10M','ACTION:DISPLAY',`DESCRIPTION:${escape(title)}`,'END:VALARM','END:VEVENT'));
+ ics.push('END:VCALENDAR');downloadBlob('pita-lab-baking-plan.ics',ics.join('\r\n'),'text/calendar;charset=utf-8');}
+// Controls
+for(const id of ['pieces','ballWeight','hydration','wheat','yeastPercent','fridgeDelay'])$(id).addEventListener('input',e=>{if(e.target.value==='')return;const v=Number(e.target.value);const bounds=id==='pieces'?[1,60]:id==='hydration'?[62,70]:id==='wheat'?[0,40]:id==='yeastPercent'?[.05,1]:id==='fridgeDelay'?[60,180]:[45,95];set(id,id==='pieces'?Math.round(clamp(v,...bounds,16)):clamp(v,...bounds,defaults[id]));});
+for(const id of ['mixDate','mixTime','bakeDate','bakeTime'])$(id).addEventListener('change',e=>{if(e.target.value)set(id,e.target.value);else render();});
+$('proofMinutes').addEventListener('input',e=>set(isBakingDayBalling()?'proofBakeDay':'proofPrepDay',Number(e.target.value)));
+$('preheatMinutes').addEventListener('input',e=>set(state.fuel==='wood'?'preheatWood':'preheatGas',Number(e.target.value)));
+document.querySelectorAll('[data-group]').forEach(b=>b.onclick=()=>{if(b.dataset.group==='balling'&&state.mode==='sameDay'){toast('Same-day plan shapes on baking day');return;}set(b.dataset.group,b.dataset.value)});
+document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>applyPreset(b.dataset.preset));
+document.querySelectorAll('[data-view-btn]').forEach(b=>b.onclick=()=>switchView(b.dataset.viewBtn));
+$('heroStart').onclick=()=>switchView('plan');$('toBake').onclick=()=>switchView('bake');$('backToPlan').onclick=()=>switchView('plan');
+$('todayTomorrow').onclick=()=>{let d=new Date(),next=new Date(d.getFullYear(),d.getMonth(),d.getDate()+1);state.bakeDate=localISO(next);state.bakeTime='10:00';applyPreset('overnight');};
+$('stepDone').onchange=e=>{state.done=state.done.filter(j=>j!==state.step);if(e.target.checked)state.done.push(state.step);safe();steps(calc());};
+$('prevStep').onclick=()=>set('step',Math.max(0,state.step-1));$('nextStep').onclick=()=>{set('step',state.step===7?0:state.step+1);$('guide').scrollIntoView({behavior:'smooth',block:'start'});};
+$('notes').addEventListener('input',e=>{state.notes=e.target.value;safe()});
+$('copyRecipe').onclick=()=>copy(recipeText());$('copyTop').onclick=()=>copy(recipeText());$('exportNotes').onclick=()=>copy(experimentText());
+$('resetResults').onclick=()=>{if(confirm('Clear the first-six-pita results?')){state.results=[...defaults.results];safe();tests();}};
+$('resetSteps').onclick=()=>{if(confirm('Reset completed steps?')){state.done=[];state.step=0;safe();steps(calc());}};
+$('symptom').addEventListener('change',diagnosis);$('stoneObserved').addEventListener('input',diagnosis);
+$('saveBatch').onclick=saveCurrent;$('newBatch').onclick=newBatch;$('exportHistory').onclick=backup;$('downloadCalendar').onclick=calendar;
+$('importHistory').addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;try{const raw=JSON.parse(await f.text());if(!raw||!Array.isArray(raw.history)||raw.history.length>200)throw Error('Unexpected backup');const cleaned=raw.history.filter(x=>x&&x.data).map((x,i)=>({id:String(x.id||Date.now()+'-'+i)+'-import'+Date.now(),savedAt:String(x.savedAt||new Date().toISOString()),data:sanitize(x.data)}));history=[...cleaned,...history].slice(0,100);safe();renderHistory();toast(`${cleaned.length} saved batches imported`);}catch(err){alert('This is not a valid Pita Lab history backup. Nothing was imported.');}finally{e.target.value='';}});
+render();switchView(state.view,false);
+})();
+
+</script>
+</body>
+</html>
